@@ -41,7 +41,7 @@ int main(int argc, char **argv)
         g_msghandler->setRoomId(userid) ;
 
 		std::vector<std::string> files ;
-		files.push_back("./resource/test.mp4") ;
+		files.push_back("../resource/test.mp4") ;
 		int ret = urtcengine->AddFileList(files, false);
 
 		tRTCAuthInfo auth;
