@@ -6,7 +6,7 @@ set(CMAKE_CXX_FLAGS "-Wall -std=gnu++11 -g -o3 -fpermissive -fPIC")
 set(ENGINEDEMO_LDFLAGS "-Wl,-rpath ")
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 
-set(THIRDPARTY ${PROJECT_SOURCE_DIR}/third_party/rapid)
+set(THIRDPARTY ${PROJECT_SOURCE_DIR}/third_party)
 set(RAPIDJSON ${THIRDPARTY}/rapidjson/include)
 set(URTC_MEDIA_PATH ${PROJECT_SOURCE_DIR}/urtclib/interface)
 set(URTC_MEDIA_LIB ${PROJECT_SOURCE_DIR}/urtclib/lib)
