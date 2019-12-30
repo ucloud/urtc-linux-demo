@@ -511,8 +511,6 @@ void URTCEventHandler::onSendRTCStats(tUCloudRtcStreamStats& rtstats)
 	}
 	else
 	{
-		writer.Key("rttms");
-		writer.Int(rtstats.mDelayMs);
 		writer.Key("bitrate");
 		writer.Int(rtstats.mVideoBitrate);
 		writer.Key("lostrate");
@@ -554,8 +552,6 @@ void URTCEventHandler::onRemoteRTCStats(tUCloudRtcStreamStats rtstats)
 	}
 	else
 	{
-		writer.Key("rttms");
-		writer.Int(rtstats.mDelayMs);
 		writer.Key("bitrate");
 		writer.Int(rtstats.mVideoBitrate);
 		writer.Key("lostrate");
