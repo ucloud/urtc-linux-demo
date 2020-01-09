@@ -11,10 +11,13 @@ URTCEngineImpl::~URTCEngineImpl()
 	UnInitRTCEngine();
 }
 
-int URTCEngineImpl::InitRTCEngine(void* callback)
+int URTCEngineImpl::InitRTCEngine(const char* logdir, int loglevel)
 {
-	m_eventhandler->initEventHandler(callback);
-	m_rtcengine = UCloudRtcEngine::sharedInstance();
+	m_eventhandler->initEventHandler(nullptr);
+	tUCloudRtcInitContext initcontext ;
+	initcontext.mFilePath = logdir ;
+	initcontext.mLogLevel = (eUCloudRtcLogLevel)loglevel ;
+	m_rtcengine = UCloudRtcEngine::sharedInstance(initcontext);
 	m_rtcengine->regRtcEventListener(m_eventhandler);
 	m_rtcengine->setChannelType(URTCConfig::getInstance()->getChannelType());
 	m_rtcengine->setStreamRole(URTCConfig::getInstance()->getStreamRole());
@@ -25,12 +28,7 @@ int URTCEngineImpl::InitRTCEngine(void* callback)
 	m_rtcengine->configLocalAudioPublish(URTCConfig::getInstance()->isAutoPubAudio());
 	m_rtcengine->configLocalCameraPublish(URTCConfig::getInstance()->isAutoPubVideo());
 	m_rtcengine->configLocalScreenPublish(URTCConfig::getInstance()->isAutoPubScreen());
-//	tUCloudVideoConfig videoconfig;
-//	videoconfig.mWidth = 0;
-//	videoconfig.mHeight = 0;
-//	videoconfig.mFrameRate = 0;
-   // m_rtcengine->enableExtendRtspVideocapture(UCLOUD_RTC_MEDIATYPE_SCREEN, true, );
-	m_rtcengine->setVideoProfile(UCLOUD_RTC_VIDEO_PROFILE_1280_720);
+	m_rtcengine->setVideoProfile(UCLOUD_RTC_VIDEO_PROFILE_640_360);
 	m_rtcengine->setDesktopProfile(UCLOUD_RTC_SCREEN_PROFILE_LOW);
 	m_rtcengine->setSdkMode(URTCConfig::getInstance()->getSdkMode());
 	return 0;

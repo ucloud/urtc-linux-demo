@@ -17,8 +17,6 @@
 #define _EXPORT_API_C extern "C"
 #endif
 
-
-
 #define  C_API extern "C"
 #define MAX_DEVICE_ID_LENGTH 128 
 #define MAX_WINDOWS_TILE_LEN 256 
@@ -176,7 +174,7 @@ typedef enum {
 	UCLOUD_RTC_VIDEO_FRAME_TYPE_RGB24,
 	UCLOUD_RTC_VIDEO_FRAME_TYPE_RGBA,
 	UCLOUD_RTC_VIDEO_FRAME_TYPE_ARGB,
-	UCLOUD_RTC_VIDEO_FRAME_TYPE_H264
+	UCLOUD_RTC_VIDEO_FRAME_TYPE_NATIVE
 }eUCloudRtcVideoFrameType;
 
 typedef struct {
@@ -210,6 +208,7 @@ typedef struct
 }tUCloudRtcAuth;
 
 typedef struct {
+	int mDelayMs ;
 	const char* mUserId;
 	const char* mStreamId;
 	int mStreamMtype;
@@ -254,6 +253,11 @@ typedef struct {
 typedef struct {
 	char* mFileName;
 }tUCloudRtcFileName;
+
+typedef struct {
+	const char* mFilePath ;
+	eUCloudRtcLogLevel mLogLevel ;
+}tUCloudRtcInitContext;
 
 class  _EXPORT_API UCloudRtcAudioFrameCallback
 {

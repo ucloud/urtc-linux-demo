@@ -11,7 +11,7 @@ public:
 	URTCEngineImpl();
 	virtual ~URTCEngineImpl();
 
-	virtual int InitRTCEngine(void* callback) ;
+	virtual int InitRTCEngine(const char* logdir, int loglevel) ;
 	virtual int UnInitRTCEngine() ;
 
 	virtual std::string getSdkVersion();

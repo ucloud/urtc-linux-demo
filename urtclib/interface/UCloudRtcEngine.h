@@ -51,20 +51,24 @@ public:
 	virtual void onFileDataBegin(const char* filename) {}
 	virtual void onFileDataEnd(const char* filename) {}
 	virtual void onFileListEnd(const char* filename) {}
+
+	virtual void onSendMsgResult(int code , const char* msg, const char* msgid, const char* msgdata){}
+	virtual void onUserMsgNotify(const char* msgfrom, const char* msgdata){}
 };
 
 class _EXPORT_API UCloudRtcEngine
 {
 public:
 	static UCloudRtcEngine *sharedInstance();
+	static UCloudRtcEngine *sharedInstance(tUCloudRtcInitContext& initcontext);
 	static void destroy();
 	static const char *getSdkVersion();
+	virtual void setLogLevel(eUCloudRtcLogLevel level) = 0;
 	virtual void regRtcEventListener(UCloudRtcEventListener* listener) = 0;
 	virtual int addMp4File(tUCloudRtcFileName* filelist, int listsize, bool cleanup) = 0;
 	virtual int setSdkMode(eUCloudRtcSdkMode mode) = 0;
 	virtual int setChannelType(eUCloudRtcChannelType roomtype) = 0;
 	virtual int setStreamRole(eUCloudRtcUserStreamRole role) = 0;
-	virtual void setLogLevel(eUCloudRtcLogLevel level) = 0;
 	virtual void setTokenSecKey(const char* seckey) = 0;
 	virtual int setAutoPublishSubscribe(bool autoPub, bool autoSub) = 0;
 	virtual int setAudioOnlyMode(bool audioOnly) = 0;
@@ -78,6 +82,8 @@ public:
 
 	virtual int joinChannel(tUCloudRtcAuth& auth) = 0;
 	virtual int leaveChannel() = 0;
+
+	virtual int semdMessage(const char* msgid, const char* msgdata) = 0;
 
 	virtual int getDesktopNums() = 0;
 	virtual int getDesktopInfo(int pos, tUCloudRtcDeskTopInfo& info) = 0;
