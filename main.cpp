@@ -15,7 +15,6 @@ int main(int argc, char **argv)
 	std::string roomid = "airoom" ;
 	std::string userid = "ai_teacher" ;
 	std::string cmd = "" ;
-	std::string rtspurl = "" ;
 	
 	if(argc>=2) 
 	{
@@ -28,11 +27,6 @@ int main(int argc, char **argv)
 		userid = argv[2];
 		std::cout <<"input userid "<< userid <<std::endl ;
 	}
-	if(argc>=4) 
-	{
-		rtspurl = argv[3];
-		std::cout <<"input rtsp url "<< rtspurl <<std::endl ;
-	}
 	
 	RTCEngineBase* urtcengine = RTCEngineFactory::createRtcEngine(RTC_CHANNELTYPE_UCLOUD);
 	if (urtcengine)
@@ -40,12 +34,13 @@ int main(int argc, char **argv)
 		g_msghandler = new URTCMsgHandler(urtcengine) ;
 		MsgQueue::getInstance()->regEventHandler("", g_msghandler);
 		MsgQueue::getInstance()->startMsgQue() ;
-        	urtcengine->InitRTCEngine("/data/log", 0);
-		urtcengine->EnableRtspSource(1, true, rtspurl) ;
+		urtcengine->InitRTCEngine("/data/log",roomid.data(),0);
 		g_msghandler->setUserId(roomid) ;
         	g_msghandler->setRoomId(userid) ;
 
-
+		std::vector<std::string> files ;
+                files.push_back("../resource/test.mp4") ;
+                int ret = urtcengine->AddFileList(files, true);
 		tRTCAuthInfo auth;
 		auth.mAppid = URTCConfig::getInstance()->getAppId();
 		auth.mRoomid = roomid;

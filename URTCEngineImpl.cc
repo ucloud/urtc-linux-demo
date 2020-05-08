@@ -11,11 +11,12 @@ URTCEngineImpl::~URTCEngineImpl()
 	UnInitRTCEngine();
 }
 
-int URTCEngineImpl::InitRTCEngine(const char* logdir, int loglevel)
+int URTCEngineImpl::InitRTCEngine(const char* logdir,const char* logname, int loglevel)
 {
 	m_eventhandler->initEventHandler(nullptr);
 	tUCloudRtcInitContext initcontext ;
 	initcontext.mFilePath = logdir ;
+	initcontext.mFileName = logname ;
 	initcontext.mLogLevel = (eUCloudRtcLogLevel)loglevel ;
 	m_rtcengine = UCloudRtcEngine::sharedInstance(initcontext);
 	m_rtcengine->regRtcEventListener(m_eventhandler);

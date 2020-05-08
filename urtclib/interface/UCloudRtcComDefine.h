@@ -171,6 +171,7 @@ typedef enum {
 
 typedef enum {
 	UCLOUD_RTC_VIDEO_FRAME_TYPE_I420 = 1,
+	UCLOUD_RTC_VIDEO_FRAME_TYPE_I422 ,
 	UCLOUD_RTC_VIDEO_FRAME_TYPE_RGB24,
 	UCLOUD_RTC_VIDEO_FRAME_TYPE_RGBA,
 	UCLOUD_RTC_VIDEO_FRAME_TYPE_ARGB,
@@ -238,6 +239,7 @@ typedef struct {
 	int mSimpleRate;
 	int mChannels;
 	int mNumSimples;
+	int mRealDataSize ;
 }tUCloudRtcAudioFrame;
 
 typedef struct {
@@ -256,8 +258,17 @@ typedef struct {
 
 typedef struct {
 	const char* mFilePath ;
+	const char* mFileName ;
 	eUCloudRtcLogLevel mLogLevel ;
 }tUCloudRtcInitContext;
+
+typedef struct {
+	int mWidth;
+	int mHeight;
+	int mFrameRate;
+	int mMinBitrate ;
+	int mMaxBitrate ;
+}tUCloudVideoConfig;
 
 class  _EXPORT_API UCloudRtcAudioFrameCallback
 {
@@ -293,6 +304,13 @@ class _EXPORT_API UCloudRtcExtendVideoRender
 public:
 	virtual ~UCloudRtcExtendVideoRender() {}
 	virtual  void onRemoteFrame(const tUCloudRtcVideoFrame* videoframe) = 0;
+};
+
+class _EXPORT_API UCloudRtcExtendVideoDecoder
+{
+public:
+	virtual ~UCloudRtcExtendVideoDecoder() {}
+	virtual  void onRemoteEncodedFrame(const char* uid, eUCloudRtcMeidaType mtype, const tUCloudRtcVideoFrame* videoframe) = 0;
 };
 
 #endif

@@ -8,7 +8,7 @@ class RTCEngineBase{
 public:
 	virtual ~RTCEngineBase(){}
 
-	virtual int InitRTCEngine(const char* logdir, int loglevel) = 0 ;
+	virtual int InitRTCEngine(const char* logdir,const char* logname, int loglevel) = 0 ;
 	virtual int UnInitRTCEngine() = 0;
 
 	virtual std::string getSdkVersion() = 0;
