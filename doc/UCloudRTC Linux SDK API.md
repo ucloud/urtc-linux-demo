@@ -52,6 +52,8 @@
     * [1.50  设置日志等级 - setLogLevel](#class-setLogLevel)	
     * [1.51  获取SDK 版本 - getSdkVersion](#class-getSdkVersion)	
     * [1.52  销毁引擎 - destroy](#class-destroy)	
+    * [1.53  设置外部音频采集 - enableExtendAudiocapture](#class-enableExtendAudiocapture)
+
 * [二、UcloudMediaDevice设备引擎接口类](#Device)    
     * [2.1  初始化设备模块 - UCloudRtcMediaDevice](#Device-UCloudRtcMediaDevice)		
     * [2.2  销毁设备模块 - destory](#Device-destory)			
@@ -1214,6 +1216,30 @@ static void destroy()
 **消息回调**
 
 无
+
+
+<a name='class-enableExtendAudiocapture'></a>
+
+### 1.53  开启外部音频采集
+
+int enableExtendAudiocapture(bool enable, UCloudRtcExtendAudioCaptureSource* audiocapture)
+
+**返回值**
+
+0 代表成功
+
+**参数说明**    
+
+
+| 名称    | 说明 | 数据类型 | 可空 |
+| -| -| -| -|
+|  enable[in]   | 设置true还是false     | bool | N |
+| audiocapture[in]    | 外部音频源。<br> 详见UCloudRtcExtendAudioCaptureSource参数说明。  | struct| N |
+
+**消息回调**
+
+无
+
 
 <a name='Device'></a>
 
@@ -2408,3 +2434,18 @@ typedef struct {
 	int mFrameRate; // 帧率
 } tUCloudVideoConfig;
 ```
+
+
+<a name='struct-UCloudRtcExtendAudioCaptureSource'></a>
+
+###  4.40  音频外部采集
+
+```cpp
+class  _EXPORT_API UCloudRtcExtendAudioCaptureSource
+{
+public:
+	virtual ~UCloudRtcExtendAudioCaptureSource() {}
+	virtual  bool doCaptureAudioFrame(tUCloudRtcAudioFrame* audioframe) = 0;
+};
+```
+
