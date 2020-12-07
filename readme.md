@@ -33,7 +33,7 @@ make
 cd ..
 bin/enginedemo roomid  userid  其中 roomid 和userid 指定为自己的房间标识和用户标识
 
-客户端 https://demo.urtc.com.cn 加入 roomid 指定的房间 观看视频
+客户端 https://web.urtc.com.cn 加入 roomid 指定的房间 观看视频
 ```
 
 
