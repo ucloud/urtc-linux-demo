@@ -45,7 +45,7 @@ bin/enginedemo roomid  userid  其中 roomid 和userid 指定为自己的房间�
 
 ## **注意事项**
 
-1. 使用本库需要了解URTC的基本配置参数，包括应用名称，AppID, AppKey, roomid，userid, tokenid, 具体使用方法请参考[URTC文档](https://docs.ucloud.cn/video/urtc)
+1. 使用本库需要了解URTC的基本配置参数，包括应用名称，AppID, AppKey, roomid，userid, tokenid, 具体使用方法请参考[URTC文档](https://docs.ucloud.cn/urtc/README)
 2. 使用本库需要了解[URTC常用术语](https://docs.ucloud.cn/urtc/sdk/term)，包括进入房间、离开房间、发布视频流、取消发布、订阅视频流、取消订阅.
 3. URTC 加入参考(参考`main.cpp`,`URTCConfig.cpp`):
    - AppID、AppKey为在UCloud控制台创建应用时系统自动生成;
