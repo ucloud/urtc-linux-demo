@@ -37,11 +37,14 @@ public:
 	virtual void onRemoteAudioLevel(const char* uid, int volume);
 	virtual void onLocalAudioLevel(int volume);
 	virtual void onSendRTCStats(tUCloudRtcStreamStats& rtstats);
+	virtual void onUpNetworkState(tUCloudRtcUpNetworkSt& rtcst)  ;
 	virtual void onRemoteRTCStats(tUCloudRtcStreamStats rtstats);
 	virtual void onFileOpenError(const char* filename, int code) ;
 	virtual void onFileDataBegin(const char* filename)  ;
 	virtual void onFileDataEnd(const char* filename) ;
 	virtual void onFileListEnd(const char* filename) ;
+	virtual void onSendMsgResult(int code , const char* msg, const char* msgid, const char* msgdata) ;
+	virtual void onUserMsgNotify(const char* msgfrom, const char* msgdata) ;
 
 private:
 	void dispatchEvent(int eventid, std::string jsonmsg);

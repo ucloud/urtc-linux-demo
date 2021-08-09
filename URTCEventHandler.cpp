@@ -501,6 +501,8 @@ void URTCEventHandler::onSendRTCStats(tUCloudRtcStreamStats& rtstats)
 	writer.Int(rtstats.mStreamMtype);
 	writer.Key("ttype");
 	writer.Int(rtstats.mTracktype);
+	writer.Key("uid");
+	writer.String(rtstats.mUserId);
 
 	if (rtstats.mTracktype == UCLOUD_RTC_TRACKTYPE_AUDIO)
 	{
@@ -511,6 +513,8 @@ void URTCEventHandler::onSendRTCStats(tUCloudRtcStreamStats& rtstats)
 	}
 	else
 	{
+		writer.Key("rttms");
+		writer.Int(rtstats.mDelayMs);
 		writer.Key("bitrate");
 		writer.Int(rtstats.mVideoBitrate);
 		writer.Key("lostrate");
@@ -527,6 +531,32 @@ void URTCEventHandler::onSendRTCStats(tUCloudRtcStreamStats& rtstats)
 
 	writer.EndObject();
 	dispatchEvent(URTC_EVENT_MSG_LOCAL_ST_UPDATE, strBuf.GetString());
+}
+
+void URTCEventHandler::onUpNetworkState(tUCloudRtcUpNetworkSt& rtcst)  
+{
+	rapidjson::StringBuffer strBuf;
+	rapidjson::Writer<rapidjson::StringBuffer> writer(strBuf);
+	writer.StartObject();
+	writer.Key("data");
+	writer.StartObject();
+	writer.Key("mtype");
+	writer.Int(rtcst.mStreamMtype);
+	writer.Key("uid");
+	writer.String(rtcst.mUserId);
+	writer.Key("availbw");
+	writer.Int(rtcst.mAvailSendBw);
+	writer.Key("retranbw");
+	writer.Int(rtcst.mRetranBw);
+	writer.Key("realenbw");
+	writer.Int(rtcst.mRealEnBw);
+	writer.Key("bufferdelay");
+	writer.Int(rtcst.mBufferDelayMs);
+
+	writer.EndObject();
+	writer.EndObject();
+
+	dispatchEvent(URTC_EVENT_MSG_UPNETWORK_STATE, strBuf.GetString());
 }
 
 void URTCEventHandler::onRemoteRTCStats(tUCloudRtcStreamStats rtstats)
@@ -552,6 +582,8 @@ void URTCEventHandler::onRemoteRTCStats(tUCloudRtcStreamStats rtstats)
 	}
 	else
 	{
+		writer.Key("rttms");
+		writer.Int(rtstats.mDelayMs);
 		writer.Key("bitrate");
 		writer.Int(rtstats.mVideoBitrate);
 		writer.Key("lostrate");
@@ -636,10 +668,50 @@ void URTCEventHandler::onFileListEnd(const char* filename)
 	dispatchEvent(URTC_EVENT_MSG_AI_TEACHER_FILE_LIST_END, strBuf.GetString());
 }
 
+void URTCEventHandler::onSendMsgResult(int code , const char* msg, const char* msgid, const char* msgdata) 
+{
+	rapidjson::StringBuffer strBuf;
+	rapidjson::Writer<rapidjson::StringBuffer> writer(strBuf);
+	writer.StartObject();
+	writer.Key("code");
+	writer.Int(code);
+	writer.Key("msg");
+	writer.String(msg);
+	writer.Key("data");
+	writer.StartObject();
+	writer.Key("msgid");
+	writer.String(msgid);
+	writer.Key("msgdata");
+	writer.String(msgdata);
+	writer.EndObject();
+
+	writer.EndObject();
+
+	dispatchEvent(URTC_EVENT_MSG_SEND_MSG_ACK,strBuf.GetString());
+}
+
+void URTCEventHandler::onUserMsgNotify(const char* msgfrom, const char* msgdata) 
+{
+	rapidjson::StringBuffer strBuf;
+	rapidjson::Writer<rapidjson::StringBuffer> writer(strBuf);
+	writer.StartObject();
+	writer.Key("data");
+	writer.StartObject();
+	writer.Key("msgfrom");
+	writer.String(msgfrom);
+	writer.Key("msgdata");
+	writer.String(msgdata);
+	writer.EndObject();
+
+	writer.EndObject();
+
+	dispatchEvent(URTC_EVENT_MSG_USER_MSG_NOTIFY,strBuf.GetString());
+}
+
 
 void URTCEventHandler::dispatchEvent(int eventid, std::string jsonmsg)
 {
-    printf("eventid = %d && msg = %s \n",eventid, jsonmsg.data()) ;
+	printf("eventid = %d && msg = %s \n",eventid, jsonmsg.data()) ;
 
 	MsgEvent* event = new MsgEvent(eventid, jsonmsg) ;
 	MsgQueue::getInstance()->addAsyncEvent(event) ;

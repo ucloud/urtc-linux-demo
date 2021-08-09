@@ -9,23 +9,23 @@ URTCConfig* URTCConfig::getInstance()
 
 URTCConfig::URTCConfig()
 {
-	mVideoprofile = UCLOUD_RTC_VIDEO_PROFILE_1280_720;
-	mSeckey = "9129304dbf8c5c4bf68d70824462409f";
-	mAppid = "URtc-h4r1txxy";
+	mVideoprofile = UCLOUD_RTC_VIDEO_PROFILE_640_480;
+	mSeckey = "your appkey ";
+	mAppid = "your appid";
 
-	mAutoPub = false;
+	mAutoPub = true;
 	mAutoSub = false;
 
 	mPubVideo = true;
 	mPubAudio = true;
-	mPubScreen = false;
+	mPubScreen = true;
 
 	mAudioOnly = false;
 
 	mRole = UCLOUD_RTC_USER_STREAM_ROLE_BOTH;
 	mSdkMode = UCLOUD_RTC_SDK_MODE_TRIVAL;
 
-	mChannelType = UCLOUD_RTC_CHANNEL_TYPE_COMMUNICATION;
+	mChannelType = UCLOUD_RTC_CHANNEL_TYPE_BROADCAST;
 	mUserid = "ubuntu_" + get_randrom_string(8);
 	mRoomid = "martin_ai";
 }

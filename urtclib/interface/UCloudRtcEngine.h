@@ -42,11 +42,14 @@ public:
 	virtual void onRemoteRTCStats(tUCloudRtcStreamStats rtstats) {}
 	virtual void onRemoteAudioLevel(const char* uid, int volume) {}
 
+	virtual void onUpNetworkState(tUCloudRtcUpNetworkSt& rtcst) {}
+
 	virtual void onLocalAudioLevel(int volume) {}
 	virtual void onKickoff(int code) {}
 	virtual void onWarning(int warn) {}
 	virtual void onError(int error) {}
 
+	//for AI class
 	virtual void onFileOpenError(const char* filename, int code) {}
 	virtual void onFileDataBegin(const char* filename) {}
 	virtual void onFileDataEnd(const char* filename) {}
@@ -64,10 +67,10 @@ public:
 	static void destroy();
 	static const char *getSdkVersion();
 	virtual void setLogLevel(eUCloudRtcLogLevel level) = 0;
-	virtual void regRtcEventListener(UCloudRtcEventListener* listener) = 0;
-	virtual int addMp4File(tUCloudRtcFileName* filelist, int listsize, bool cleanup) = 0;
-	virtual int setSdkMode(eUCloudRtcSdkMode mode) = 0;
 	virtual int setChannelType(eUCloudRtcChannelType roomtype) = 0;
+	virtual void regRtcEventListener(UCloudRtcEventListener* listener) = 0;
+
+	virtual int setSdkMode(eUCloudRtcSdkMode mode) = 0;
 	virtual int setStreamRole(eUCloudRtcUserStreamRole role) = 0;
 	virtual void setTokenSecKey(const char* seckey) = 0;
 	virtual int setAutoPublishSubscribe(bool autoPub, bool autoSub) = 0;
@@ -75,12 +78,23 @@ public:
 	virtual int setVideoCodec(eUCloudRtcVideoCodec codec) = 0;
 
 	virtual int enableExtendRtspVideocapture(eUCloudRtcMeidaType type, bool enable, const char* rtspurl) = 0;
-	virtual int enableExtendVideocapture(bool enable, UCloudRtcExtendVideoCaptureSource* videocapture) = 0;
-	virtual int enableExtendAudiocapture(bool enable, UCloudRtcExtendAudioCaptureSource* audiocapture) = 0;
-	virtual int startAudioMixing(const char* filepath, bool replace, bool loop,float musicvol) = 0;
-	virtual int stopAudioMixing() = 0;
+	virtual int enableExtendVideocapture(bool enable) = 0;
+	virtual int enableExtendVideocaptureAsScreen(bool enable) = 0;
+	virtual int enableExtendAudiocapture(bool enable) = 0;
+	virtual int enableCameraAsScreen(bool enable, eUCloudRtcScreenProfile profile, tUCloudRtcDeviceInfo& info) = 0;
+	
 	virtual void regAudioFrameCallback(UCloudRtcAudioFrameCallback* callback) = 0;
 	virtual void regEncodedFrameCallback(UCloudRtcExtendVideoDecoder* callback)  = 0 ;
+
+	virtual int startAudioMixing(const char* filepath, bool replace, bool loop,float musicvol) = 0;
+	virtual int stopAudioMixing() = 0;
+	
+	//for AI class
+	virtual int addMp4File(tUCloudRtcFileName* filelist, int listsize, bool cleanup) = 0;
+
+	//for private 
+	virtual int setServerGetFrom(eUCloudRtcServerGetFrom from) = 0;
+	virtual int setServerUrl(const char* serverurl) = 0;
 
 	virtual int joinChannel(tUCloudRtcAuth& auth) = 0;
 	virtual int leaveChannel() = 0;
@@ -95,10 +109,13 @@ public:
 	virtual void setDesktopProfile(eUCloudRtcScreenProfile profile) = 0;
 	virtual void setCaptureScreenPagrams(tUCloudRtcScreenPargram& pgram) = 0;
 
+	virtual void pushVideoFrameData(eUCloudRtcMeidaType mediatype, tUCloudRtcVideoFrame* frame) = 0 ;
+	virtual void pushAudioFrameData(tUCloudRtcAudioFrame* frame) = 0 ;
+
 	virtual int muteCamBeforeJoin(bool mute) = 0;
 	virtual int muteMicBeforeJoin(bool mute) = 0;
 	virtual void setVideoProfile(eUCloudRtcVideoProfile profile) = 0;
-	virtual void setVideoProfile(eUCloudRtcVideoProfile profile, tUCloudVideoConfig& videoconfig) = 0;
+	virtual void setVideoProfile(eUCloudRtcVideoProfile profile, tUCloudRtcVideoConfig& videoconfig) = 0;
 	virtual int switchCamera(tUCloudRtcDeviceInfo& info) = 0;
 	virtual int publish(eUCloudRtcMeidaType type, bool hasvideo, bool hasaudio) = 0; 
 	virtual int unPublish(eUCloudRtcMeidaType type) = 0;
@@ -114,6 +131,9 @@ public:
 	virtual int muteRemoteAudio(tUCloudRtcMuteSt& info, bool mute) = 0;
 	virtual int muteRemoteVideo(tUCloudRtcMuteSt& info, bool mute) = 0;
 	virtual int enableAllAudioPlay(bool enable) = 0;
+	
+	virtual int enableAudioRecord(bool enable) = 0;
+	virtual int enableAudioPlay(const char* uid, bool enable) = 0;
 
 	virtual int startRecord(tUCloudRtcRecordConfig& recordconfig) = 0;
 	virtual int stopRecord() = 0;

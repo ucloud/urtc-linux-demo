@@ -11,12 +11,13 @@ URTCEngineImpl::~URTCEngineImpl()
 	UnInitRTCEngine();
 }
 
-int URTCEngineImpl::InitRTCEngine(const char* logdir,const char* logname, int loglevel)
+int URTCEngineImpl::InitRTCEngine(const char* logdir,const char* logname, int loglevel, int classmode)
 {
 	m_eventhandler->initEventHandler(nullptr);
 	tUCloudRtcInitContext initcontext ;
 	initcontext.mFilePath = logdir ;
 	initcontext.mFileName = logname ;
+	initcontext.mClassType = (eUCloudRtcClassType)classmode ;
 	initcontext.mLogLevel = (eUCloudRtcLogLevel)loglevel ;
 	m_rtcengine = UCloudRtcEngine::sharedInstance(initcontext);
 	m_rtcengine->regRtcEventListener(m_eventhandler);
@@ -29,9 +30,16 @@ int URTCEngineImpl::InitRTCEngine(const char* logdir,const char* logname, int lo
 	m_rtcengine->configLocalAudioPublish(URTCConfig::getInstance()->isAutoPubAudio());
 	m_rtcengine->configLocalCameraPublish(URTCConfig::getInstance()->isAutoPubVideo());
 	m_rtcengine->configLocalScreenPublish(URTCConfig::getInstance()->isAutoPubScreen());
-	m_rtcengine->setVideoProfile(UCLOUD_RTC_VIDEO_PROFILE_640_360);
-	m_rtcengine->setDesktopProfile(UCLOUD_RTC_SCREEN_PROFILE_LOW);
+	tUCloudRtcVideoConfig config ;
+	config.mHeight = 720 ;
+	config.mWidth = 1280 ;
+	config.mFrameRate = 30 ;
+	config.mMaxBitrate = 800 ;
+	config.mMinBitrate = 200 ;
+	m_rtcengine->setVideoProfile(UCLOUD_RTC_VIDEO_PROFILE_NONE, config);
+	m_rtcengine->setDesktopProfile(UCLOUD_RTC_SCREEN_PROFILE_HIGH);
 	m_rtcengine->setSdkMode(URTCConfig::getInstance()->getSdkMode());
+	m_rtcengine->setVideoCodec(UCLOUD_RTC_CODEC_H264) ;
 	return 0;
 }
 
@@ -109,6 +117,15 @@ int URTCEngineImpl::LeaveRoom(std::string& roomid)
 	return -1;
 }
 
+int URTCEngineImpl::sendMessage(std::string& msgid, std::string& msgdata)  
+{
+	if (m_rtcengine)
+	{
+		return m_rtcengine->sendMessage( msgid.data(), msgdata.data());
+	}
+	return -1;
+}
+
 int URTCEngineImpl::SetCodecType(int codec)
 {
 	if (m_rtcengine)
@@ -136,13 +153,59 @@ int URTCEngineImpl::MuteMicBeforeJoin(bool mute)
 	return -1;
 }
 
-int URTCEngineImpl::enableExtendVideoSource(bool enable, UCloudRtcExtendVideoCaptureSource* source)
+int URTCEngineImpl::enableExtendVideoSource(bool enable)
 {
 	if (m_rtcengine)
 	{
-		return m_rtcengine->enableExtendVideocapture(enable, source);
+		return m_rtcengine->enableExtendVideocapture(enable);
 	}
 	return -1;
+}
+
+int URTCEngineImpl::enableExtendVideocaptureAsScreen(bool enable)  
+{
+	if (m_rtcengine)
+	{
+		return m_rtcengine->enableExtendVideocaptureAsScreen(enable);
+	}
+	return -1;
+}
+
+int URTCEngineImpl::enableExtendAudioSource(bool enable) 
+{
+	if (m_rtcengine)
+	{
+		return m_rtcengine->enableExtendAudiocapture(enable);
+	}
+	return -1;
+}
+
+int URTCEngineImpl::enableExtendAudioSink( UCloudRtcAudioFrameCallback* sink) 
+{
+	if (m_rtcengine)
+	{
+		m_rtcengine->regAudioFrameCallback(sink);
+		return 0 ;
+	}
+	return -1;
+}
+
+int URTCEngineImpl::PushVideoFrame(int mediatype,tUCloudRtcVideoFrame* frame) 
+{
+	if (m_rtcengine)
+	{
+		m_rtcengine->pushVideoFrameData((eUCloudRtcMeidaType)mediatype, frame);
+	}
+	return 0;
+}
+
+int URTCEngineImpl::PushAudioFrame(tUCloudRtcAudioFrame* frame)  
+{
+	if (m_rtcengine)
+	{
+		m_rtcengine->pushAudioFrameData(frame);
+	}
+	return 0;
 }
 
 int URTCEngineImpl::PublishStream(tRTCStreamInfo& streaminfo)

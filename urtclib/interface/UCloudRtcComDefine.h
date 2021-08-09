@@ -33,7 +33,7 @@ typedef struct {
 
 typedef struct
 {
-	long mScreenindex;
+	long mScreenIndex;
 	int  mXpos;
 	int mYpos;
 	int mWidth;
@@ -59,8 +59,8 @@ typedef enum {
 
 typedef enum {
 	UCLOUD_RTC_MEDIATYPE_NONE = 0,
-	UCLOUD_RTC_MEDIATYPE_VIDEO = 1,
-	UCLOUD_RTC_MEDIATYPE_SCREEN = 2
+	UCLOUD_RTC_MEDIATYPE_VIDEO ,
+	UCLOUD_RTC_MEDIATYPE_SCREEN 
 }eUCloudRtcMeidaType;
 
 typedef struct {
@@ -80,9 +80,9 @@ typedef struct {
 }tUCloudRtcMuteSt;
 
 typedef enum {
-	UCLOUD_RTC_RECORDPROFILE_SD = 1, //���� 640*360
-	UCLOUD_RTC_RECORDPROFILE_HD, // ����  1280*720
-	UCLOUD_RTC_RECORDPROFILE_HDPLUS, //���� 1920*1080
+	UCLOUD_RTC_RECORDPROFILE_SD = 1, //640*360
+	UCLOUD_RTC_RECORDPROFILE_HD, //1280*720
+	UCLOUD_RTC_RECORDPROFILE_HDPLUS, //1920*1080
 }eUCloudRtcRecordProfile;
 
 typedef enum {
@@ -98,69 +98,68 @@ typedef enum {
 }eUCloudRtcWaterMarkPos;
 
 typedef enum {
-	UCLOUD_RTC_WATERMARK_TYPE_TIME = 1,
+	UCLOUD_RTC_WATERMARK_TYPE_NONE = 0 ,
+	UCLOUD_RTC_WATERMARK_TYPE_TIME ,
 	UCLOUD_RTC_WATERMARK_TYPE_PIC,
 	UCLOUD_RTC_WATERMARK_TYPE_TEXT,
 }eUCloudRtcWaterMarkType;
 
-//render type
+typedef enum {
+	UCLOUD_RTC_RELAYMODE_AUTO = 1,
+	UCLOUD_RTC_RELAYMODE_MANAUL ,
+}eUCloudRtcRelayMode;
+
 typedef enum {
 	UCLOUD_RTC_RENDER_MODE_DEFAULT = 0, //default full
-	UCLOUD_RTC_RENDER_MODE_FIT = 1, 
-	UCLOUD_RTC_RENDER_MODE_FILL = 2 
+	UCLOUD_RTC_RENDER_MODE_FIT, 
+	UCLOUD_RTC_RENDER_MODE_FILL, 
 } eUCloudRtcRenderMode;
 
-//render type
 typedef enum {
 	UCLOUD_RTC_RENDER_TYPE_GDI = 1,
-	UCLOUD_RTC_RENDER_TYPE_D3D = 2,
-	UCLOUD_RTC_RENDER_TYPE_EXTEND = 3,
+	UCLOUD_RTC_RENDER_TYPE_D3D ,
+	UCLOUD_RTC_RENDER_TYPE_EXTEND ,
 } eUCloudRtcRenderType;
 
-/**
-*  log level
-*/
 typedef enum {
-	UCLOUD_RTC_LOG_LEVEL_DEBUG,
+	UCLOUD_RTC_LOG_LEVEL_DEBUG = 0,
 	UCLOUD_RTC_LOG_LEVEL_INFO,
 	UCLOUD_RTC_LOG_LEVEL_WARN,
 	UCLOUD_RTC_LOG_LEVEL_ERROR,
 	UCLOUD_RTC_LOG_LEVEL_NONE,
 } eUCloudRtcLogLevel;
 
-//video profile
+
 typedef enum {
-	UCLOUD_RTC_VIDEO_PROFILE_NONE = -1,
+	UCLOUD_RTC_VIDEO_PROFILE_NONE = -1, 
 	UCLOUD_RTC_VIDEO_PROFILE_320_180 = 1,
 	UCLOUD_RTC_VIDEO_PROFILE_320_240 = 2,
 	UCLOUD_RTC_VIDEO_PROFILE_640_360 = 3,
 	UCLOUD_RTC_VIDEO_PROFILE_640_480 = 4,
 	UCLOUD_RTC_VIDEO_PROFILE_1280_720 = 5,
-	UCLOUD_RTC_VIDEO_PROFILE_1920_1080 = 6
+	UCLOUD_RTC_VIDEO_PROFILE_1920_1080 = 6,
 } eUCloudRtcVideoProfile;
 
 typedef enum {
 	UCLOUD_RTC_SCREEN_PROFILE_LOW = 1,
-	UCLOUD_RTC_SCREEN_PROFILE_MIDDLE = 2,
-	UCLOUD_RTC_SCREEN_PROFILE_HIGH = 3,
-	UCLOUD_RTC_SCREEN_PROFILE_HIGH_PLUS = 4
-} eUCloudRtcScreenProfile;
+	UCLOUD_RTC_SCREEN_PROFILE_MIDDLE ,
+	UCLOUD_RTC_SCREEN_PROFILE_HIGH ,
+	UCLOUD_RTC_SCREEN_PROFILE_HIGH_PLUS ,
+}eUCloudRtcScreenProfile;
 
 typedef enum {
-	UCLOUD_RTC_CHANNEL_TYPE_COMMUNICATION,
+	UCLOUD_RTC_CHANNEL_TYPE_COMMUNICATION = 0,
 	UCLOUD_RTC_CHANNEL_TYPE_BROADCAST
 }eUCloudRtcChannelType;
 
-//stream role 
 typedef enum {
-	UCLOUD_RTC_USER_STREAM_ROLE_PUB, // up
-	UCLOUD_RTC_USER_STREAM_ROLE_SUB,// down
-	UCLOUD_RTC_USER_STREAM_ROLE_BOTH //both
+	UCLOUD_RTC_USER_STREAM_ROLE_PUB = 0, 
+	UCLOUD_RTC_USER_STREAM_ROLE_SUB,
+	UCLOUD_RTC_USER_STREAM_ROLE_BOTH
 } eUCloudRtcUserStreamRole;
 
-//sdk mode
 typedef enum {
-	UCLOUD_RTC_SDK_MODE_NORMAL, 
+	UCLOUD_RTC_SDK_MODE_NORMAL = 0, 
 	UCLOUD_RTC_SDK_MODE_TRIVAL
 } eUCloudRtcSdkMode;
 
@@ -168,6 +167,10 @@ typedef enum {
 	UCLOUD_RTC_CODEC_VP8 = 1, //default
 	UCLOUD_RTC_CODEC_H264
 } eUCloudRtcVideoCodec;
+
+typedef enum {
+	UCLOUD_RTC_CODEC_OPUS = 1, //default
+} eUCloudRtcAudioCodec;
 
 typedef enum {
 	UCLOUD_RTC_VIDEO_FRAME_TYPE_I420 = 1,
@@ -179,6 +182,35 @@ typedef enum {
 }eUCloudRtcVideoFrameType;
 
 typedef struct {
+	const char* mUid;
+	eUCloudRtcMeidaType mMediaType;
+}tUCloudRtcRelayStream;
+
+typedef enum {
+	UCLOUD_RTC_MIX_LAYOUT_NONE,
+	UCLOUD_RTC_MIX_LAYOUT_FLOW,	  
+	UCLOUD_RTC_MIX_LAYOUT_TEACH,	  
+	UCLOUD_RTC_MIX_LAYOUT_CUSTOM,    
+	UCLOUD_RTC_MIX_LAYOUT_SPEAKERMODE, 
+	UCLOUD_RTC_MIX_LAYOUT_MULTIAUTO, 
+	UCLOUD_RTC_MIX_LAYOUT_SINGEVIDEO_AUDIOMIXER, 
+}eUCloudRtcMixLayout;
+
+typedef enum 
+{
+	UCLOUD_RTC_SERVER_GET_FROM_UTECH = 1,
+	UCLOUD_RTC_SERVER_GET_FROM_USER_GATEWAY,
+	UCLOUD_RTC_SERVER_GET_FROM_USER_DIRECT
+}eUCloudRtcServerGetFrom;
+
+typedef enum 
+{
+	UCLOUD_RTC_CLASS_TYPE_NORMAL = 1,
+	UCLOUD_RTC_CLASS_TYPE_AI ,
+	UCLOUD_RTC_CLASS_TYPE_RTSP
+}eUCloudRtcClassType;
+
+typedef struct {
 	const char* mMainviewuid;
 	const char* mBucket;
 	const char* mBucketRegion;
@@ -186,6 +218,12 @@ typedef struct {
 	eUCloudRtcRecordType mRecordType;
 	eUCloudRtcWaterMarkPos mWatermarkPos;
 	eUCloudRtcMeidaType mMainviewmediatype;
+	eUCloudRtcWaterMarkType mWaterMarkType ;
+	const char* mWaterMarkUrl ;
+	bool mIsAverage ;
+	eUCloudRtcMixLayout mMixerTemplateType ;
+	tUCloudRtcRelayStream* mRecordUserList = nullptr ;
+	int mRecordUserListSize ;
 }tUCloudRtcRecordConfig;
 
 // render view
@@ -206,6 +244,7 @@ typedef struct
 	const char* mRoomId;
 	const char* mUserId;
 	const char* mUserToken;
+	const char* mServerUrl;
 }tUCloudRtcAuth;
 
 typedef struct {
@@ -221,6 +260,16 @@ typedef struct {
 	int mVideoFrameRate = 0;     // video frames per secon
 	float mPacketLostRate = 0.0f;
 }tUCloudRtcStreamStats;
+
+typedef struct {
+	const char* mUserId;
+	const char* mStreamId;
+	int mStreamMtype;
+	int mAvailSendBw = 0;     // unit:bps
+	int mRetranBw = 0; // unit:bps
+	int mBufferDelayMs = 0 ; // unit:ms
+	int mRealEnBw = 0 ;  // unit:bps
+}tUCloudRtcUpNetworkSt;
 
 typedef struct {
 	const char* mRecordId;
@@ -240,6 +289,7 @@ typedef struct {
 	int mChannels;
 	int mNumSimples;
 	int mRealDataSize ;
+	int mDataType ;
 }tUCloudRtcAudioFrame;
 
 typedef struct {
@@ -247,7 +297,7 @@ typedef struct {
 	unsigned int mDataSize ; //only for encoded data
 	int mWidth;
 	int mHeight;
-	int mFrameType ;
+	int mFrameType ; // 0 keyframe 1 not keyframe
 	int64_t mTimeStampms ;
 	eUCloudRtcVideoFrameType mVideoType;
 }tUCloudRtcVideoFrame;
@@ -259,6 +309,7 @@ typedef struct {
 typedef struct {
 	const char* mFilePath ;
 	const char* mFileName ;
+	eUCloudRtcClassType mClassType ;
 	eUCloudRtcLogLevel mLogLevel ;
 }tUCloudRtcInitContext;
 
@@ -268,7 +319,7 @@ typedef struct {
 	int mFrameRate;
 	int mMinBitrate ;
 	int mMaxBitrate ;
-}tUCloudVideoConfig;
+}tUCloudRtcVideoConfig;
 
 class  _EXPORT_API UCloudRtcAudioFrameCallback
 {
@@ -276,20 +327,7 @@ public:
 	virtual ~UCloudRtcAudioFrameCallback() {}
 	virtual void onLocalAudioFrame(tUCloudRtcAudioFrame* audioframe) {}
 	virtual void onRemoteMixAudioFrame(tUCloudRtcAudioFrame* audioframe) {}
-};
-
-class  _EXPORT_API UCloudRtcExtendVideoCaptureSource
-{
-public:
-	virtual ~UCloudRtcExtendVideoCaptureSource() {}
-	virtual  bool doCaptureVideoFrame(tUCloudRtcVideoFrame* videoframe) = 0;
-};
-
-class  _EXPORT_API UCloudRtcExtendAudioCaptureSource
-{
-public:
-	virtual ~UCloudRtcExtendAudioCaptureSource() {}
-	virtual  bool doCaptureAudioFrame(tUCloudRtcAudioFrame* audioframe) = 0;
+	virtual void onRemotePeerAudioFrame(tUCloudRtcAudioFrame* audioframe){} ;
 };
 
 class _EXPORT_API UCloudRtcVideoFrameObserver 

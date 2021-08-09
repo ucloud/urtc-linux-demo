@@ -1,9 +1,132 @@
 # linux SDK 版本说明
 
+## 1.8.0  版本
+该版本发布于2020-08-04
+### 功能更新
+1、优化ubuntu x64 架构下 使用AI 模式下（UCloudRtcEngine *sharedInstance(tUCloudRtcInitContext& initcontext); 中initcontext 中的classtype 选择 UCLOUD_RTC_CLASS_TYPE_AI）推流媒体文件的延时和稳定性，并优化音画同步问题  
+2、优化传输算法，优化带宽不足时，发送效率偏低导致的播放端卡顿问题，并优化在数据突发情况下可能存在的瞬间丢包和卡顿问题  
+3、去掉pull 模式传入外部数据方式，全部采用push 模式可以有效降低时延，以及本地buffer 累计带来的播放可能出现音画不同步问题  
+4、支持同时两路视频源上传包括：两路摄像头，两路rtsp（视频编码只能是h264格式），两路外部音视频数据源（编码好h264数据源或者裸数据）上传  
+5、减少SDK内部消耗，方便低功耗低端设备的应用
+``` c++ 
+push 媒体数据发送
+    class UCloudRtcEngine {
+    public:
+      	virtual void pushVideoFrameData(eUCloudRtcMeidaType mediatype, tUCloudRtcVideoFrame* frame) = 0 ;; //传入视频数据
+	    virtual void pushAudioFrameData(tUCloudRtcAudioFrame* frame) = 0 ; //传入音频数据 每次只能传入10ms 数据双声道 数据
+    };
+    // 音频数据
+    typedef struct {
+        const char* mUserId;// 用户标识
+        const char* mStreamId;// 流id 暂时无用
+        void* mAudioData; // 音频数据
+        int mBytePerSimple;  // 每个音频采样的字节数 一般 16bits 2bytes
+        int mSimpleRate; // 音频采样频率
+        int mNumSimples;
+        int mRealDataSize ;
+        int mDataType ; // 0 编码好数据（只能是 opus 格式） 暂时仅内部AI模式使用，不对外 1 pcm 数据
+    }tUCloudRtcAudioFrame;
+
+```
+
+``` c++ 
+两路rtsp 上传
+UCloudRtcEngine *sharedInstance(tUCloudRtcInitContext& initcontext); 中initcontext 中的classtype 选择 UCLOUD_RTC_CLASS_TYPE_RTSP
+    class UCloudRtcEngine {
+    public:
+      	virtual int enableExtendRtspVideocapture(eUCloudRtcMeidaType type, bool enable, const char* rtspurl) = 0;
+    };
+    // 音频数据
+    rtcengine->enableExtendRtspVideocapture(UCLOUD_RTC_MEDIATYPE_VIDEO, true, "your rtsp url")  ; //通过摄像头通道发送
+    rtcengine->enableExtendRtspVideocapture(UCLOUD_RTC_MEDIATYPE_SCREEN, true, "your rtsp url")  ; //通过桌面采集通道发送
+
+```
+
+``` c++ 
+两路外部视频源数据上传
+    class UCloudRtcEngine {
+    public:
+      	virtual int enableExtendVideocapture(bool enable) = 0; // 通过摄像头发送数据
+	    virtual int enableExtendVideocaptureAsScreen(bool enable) = 0;// 通过桌面采集通道发送数据
+    };
+1、数据源是未编码的裸数据数据源
+
+    UCloudRtcEngine *sharedInstance(tUCloudRtcInitContext& initcontext); 中initcontext 中的classtype 选择 UCLOUD_RTC_CLASS_TYPE_NORMAL
+
+    rtcengine->pushVideoFrameData(UCLOUD_RTC_MEDIATYPE_VIDEO, tUCloudRtcVideoFrame* frame) // 通过摄像头发送数据
+    rtcengine->pushVideoFrameData(UCLOUD_RTC_MEDIATYPE_SCREEN, tUCloudRtcVideoFrame* frame) // 通过桌面采集通道发送数据
+2、数据源是编码好的h264 数据
+    UCloudRtcEngine *sharedInstance(tUCloudRtcInitContext& initcontext); 中initcontext 中的classtype 选择 UCLOUD_RTC_CLASS_TYPE_RTSP
+
+    rtcengine->pushVideoFrameData(UCLOUD_RTC_MEDIATYPE_VIDEO, tUCloudRtcVideoFrame* frame) // 通过摄像头发送数据
+    rtcengine->pushVideoFrameData(UCLOUD_RTC_MEDIATYPE_SCREEN, tUCloudRtcVideoFrame* frame) // 通过桌面采集通道发送数据
+```
+
+``` c++ 
+两路摄像头上传，除了正常的摄像头上传，另一路内部通过桌面采集通道发送
+    class UCloudRtcEngine {
+    public:
+      	virtual int enableCameraAsScreen(bool enable, eUCloudRtcScreenProfile profile, tUCloudRtcDeviceInfo& info) = 0; // 详见接口说明
+    };
+
+    tRTCDevInfo dinfo ;
+    dinfo.mDevName = "your camera name" ;
+    dinfo.mDevId = "your camera id" ;
+    rtcengine->enableCamAsScreen(true, UCLOUD_RTC_SCREEN_PROFILE_HIGH, dinfo) ;
+
+
+```
+
+## 1.7.1  版本
+该版本发布于2021-03-06。
+### 功能更新
+1、支持arm64 架构，包含jetson tx2  xavier  ti等  
+2、自定一个媒体采集改为push 模式，减少pull模式下外部缓存可能造成的延时和音画不同步问题  
+3、优化发送策略，拥塞算法将根据本地的缓存大小，采取丢帧策略，降低时延  
+4、增加本地发送状态回调，包括预测带宽,重传带宽，编码码率，本地缓存队列长度数据回调，方便用户感知本地发送状态
+5、增加课程类型
+``` c++ 
+push 媒体数据发送
+    class UCloudRtcEngine {
+    public:
+      	virtual void pushVideoFrameData(tUCloudRtcVideoFrame* frame) = 0 ; //传入视频数据，每次只能传入10ms 数据
+	    virtual void pushAudioFrameData(tUCloudRtcAudioFrame* frame) = 0 ; //传入音频数据
+    };
+    // 音频数据
+    typedef struct {
+        const char* mUserId;// 用户标识
+        const char* mStreamId;// 流id 暂时无用
+        void* mAudioData; // 音频数据
+        int mBytePerSimple;  // 每个音频采样的字节数 一般 16bits 2bytes
+        int mSimpleRate; // 音频采样频率
+        int mNumSimples;
+        int mRealDataSize ;
+    }tUCloudRtcAudioFrame;
+
+```
+``` c++ 
+发送状态回调，
+class _EXPORT_API  UCloudRtcEventListener {
+    ……
+    virtual void onUpNetworkState(tUCloudRtcUpNetworkSt& rtcst) {}
+    ……
+}
+
+typedef struct {
+	const char* mUserId;  // 用户标识
+	const char* mStreamId; // 流id 暂时无用
+	int mStreamMtype;  // 流标识 1 摄像头  2 窗口
+	int mAvailSendBw = 0;     // 可用带宽 unit:bps
+	int mRetranBw = 0; // 当前重传占用带宽 unit:bps
+	int mBufferDelayMs = 0 ; // 发送缓存区delay unit:ms
+	int mRealEnBw = 0 ;  // 实际编码码率 unit:bps
+}tUCloudRtcUpNetworkSt;
+```
+
 ## 1.6.2 版本
+该版本发布于2020-05-10。
 ### 功能更新
 1、支持hisiarm 系统
-
 2、支持海思系统自定义音视频数据采集 
 调用  
 

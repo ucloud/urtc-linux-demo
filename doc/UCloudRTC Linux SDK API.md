@@ -2,57 +2,72 @@
 
 * [一、UcloudRtcEngine引擎接口 类](#class)
     * [1.1  获取引擎 - UCloudRtcEngine](#class-UCloudRtcEngine)
-    * [1.2  绑定监听事件 - regRtcEventListener ](#class-regRtcEventListener)
-    * [1.3  设置SDK模式 - setSdkMode](#class-setSdkMode)
-    * [1.4  设置通话模式 - setChannelType](#class-setChannelType)	
-    * [1.5  设置流操作权限 - setStreamRole](#class-setStreamRole)
-    * [1.6  设置纯音频模式 - setAudioOnlyMode](#class-setAudioOnlyMode)	
-    * [1.7  设置自动发布和订阅 - setAutoPublishSubscribe](#class-setAutoPublishSubscribe)
-    * [1.8  配置本地音频是否发布 - configLocalAudioPublish](#class-configLocalAudioPublish)
-    * [1.9  是否发布音频 - isLocalAudioPublishEnabled](#class-isLocalAudioPublishEnabled)
-    * [1.10  配置是否自动发布本地摄像头 - configLocalCameraPublish](#class-configLocalCameraPublish)
-    * [1.11  是否发布摄像头 - isLocalCameraPublishEnabled](#class-isLocalCameraPublishEnabled)
-    * [1.12  配置是否自动发布本地桌面 - configLocalScreenPublish](#class-configLocalScreenPublish)
-    * [1.13  是否发布桌面 - isLocalScreenPublishEnabled](#class-isLocalScreenPublishEnabled)
-    * [1.14  设置视频编码参数 - setVideoProfile](#class-setVideoProfile)
-    * [1.15  入会时关闭摄像头 - muteCamBeforeJoin](#class-muteCamBeforeJoin)	
-    * [1.16  入会时关闭麦克风 - muteMicBeforeJoin](#class-muteMicBeforeJoin)		
-    * [1.17  加入房间 - joinChannel](#class-joinChannel)
-    * [1.18  离开房间 - leaveChannel](#class-leaveChannel)	
-    * [1.19  发布本地流 - publish](#class-publish)
-    * [1.20  停止发布本地流 - unPublish](#class-unPublish)
-    * [1.21  开启本地渲染 - startPreview](#class-startPreview)	
-    * [1.22  停止本地渲染 - stopPreview](#class-stopPreview)	
-    * [1.23 订阅远端媒体流 - subscribe](#class-subscribe)
-    * [1.24 取消订阅远端媒体流 - unSubscribe](#class-unSubscribe)
-    * [1.25  开启远端渲染 - startRemoteView](#class-startRemoteView)	
-    * [1.26  停止远端渲染 - stopRemoteView](#class-stopRemoteView)	
-    * [1.27  打开/关闭本地麦克风 - muteLocalMic](#class-muteLocalMic)	
-    * [1.28  打开/关闭本地视频 - muteLocalVideo](#class-muteLocalVideo)		
-    * [1.29  应用静音 - enableAllAudioPlay](#class-enableAllAudioPlay)	
-    * [1.30  打开/关闭远端音频 - muteRemoteAudio](#class-muteRemoteAudio)	
-    * [1.31  打开/关闭远端视频 - muteRemoteVideo](#class-muteRemoteVideo)	
-    * [1.32  是否为自动发布模式 - isAutoPublish](#class-isAutoPublish)	
-    * [1.33  是否为自动订阅模式 - isAutoSubscribe](#class-isAutoSubscribe)	
-    * [1.34  切换摄像头 - switchCamera](#class-switchCamera)
-    * [1.35  设置RTSP视频源 - enableExtendRtspVideocapture](#class-enableExtendRtspVideocapture)
-    * [1.36  设置自定义外部视频源 - enableExtendVideocapture](#class-enableExtendVideocapture)	
-    * [1.37  设置音频数据监听 - regAudioFrameCallback](#class-regAudioFrameCallback)	
-    * [1.38  添加micphone混音文件 - startAudioMixing](#class-startAudioMixing)	
-    * [1.39  停止micphone混音 - stopAudioMixing](#class-stopAudioMixing)	
-    * [1.40  设置桌面编码参数 - setDesktopProfile](#class-setDesktopProfile)	
-    * [1.41  设置桌面采集参数 - setCaptureScreenPagrams](#class-setCaptureScreenPagrams)	
-    * [1.42  设置桌面采集类型 - setUseDesktopCapture](#class-setUseDesktopCapture)	
-    * [1.43  获取屏幕个数 - getDesktopNums](#class-getDesktopNums)	
-    * [1.44  获取屏幕信息 - getDesktopInfo](#class-getDesktopInfo)	
-    * [1.45  获取窗口个数 - getWindowNums](#class-getWindowNums)
-    * [1.46  获取窗口信息 - getWindowInfo](#class-getWindowInfo)	
+	* [1.2  获取引擎 - UCloudRtcEngine](#class-UCloudRtcEngineExt)
+    * [1.3  绑定监听事件 - regRtcEventListener ](#class-regRtcEventListener)
+    * [1.4  设置SDK模式 - setSdkMode](#class-setSdkMode)
+    * [1.5  设置通话模式 - setChannelType](#class-setChannelType)	
+    * [1.6  设置流操作权限 - setStreamRole](#class-setStreamRole)
+    * [1.7  设置纯音频模式 - setAudioOnlyMode](#class-setAudioOnlyMode)	
+    * [1.8  设置自动发布和订阅 - setAutoPublishSubscribe](#class-setAutoPublishSubscribe)
+    * [1.9  配置本地音频是否发布 - configLocalAudioPublish](#class-configLocalAudioPublish)
+    * [1.10  是否发布音频 - isLocalAudioPublishEnabled](#class-isLocalAudioPublishEnabled)
+    * [1.11  配置是否自动发布本地摄像头 - configLocalCameraPublish](#class-configLocalCameraPublish)
+    * [1.12  是否发布摄像头 - isLocalCameraPublishEnabled](#class-isLocalCameraPublishEnabled)
+    * [1.13  配置是否自动发布本地桌面 - configLocalScreenPublish](#class-configLocalScreenPublish)
+    * [1.14  是否发布桌面 - isLocalScreenPublishEnabled](#class-isLocalScreenPublishEnabled)
+    * [1.15  设置视频编码参数 - setVideoProfile](#class-setVideoProfile)
+    * [1.16  入会时关闭摄像头 - muteCamBeforeJoin](#class-muteCamBeforeJoin)	
+    * [1.17  入会时关闭麦克风 - muteMicBeforeJoin](#class-muteMicBeforeJoin)		
+    * [1.18  加入房间 - joinChannel](#class-joinChannel)
+    * [1.19  离开房间 - leaveChannel](#class-leaveChannel)	
+    * [1.20  发布本地流 - publish](#class-publish)
+    * [1.21  停止发布本地流 - unPublish](#class-unPublish)
+    * [1.22  开启本地渲染 - startPreview](#class-startPreview)	
+    * [1.23  停止本地渲染 - stopPreview](#class-stopPreview)	
+    * [1.24 订阅远端媒体流 - subscribe](#class-subscribe)
+    * [1.25 取消订阅远端媒体流 - unSubscribe](#class-unSubscribe)
+    * [1.26  开启远端渲染 - startRemoteView](#class-startRemoteView)	
+    * [1.27  停止远端渲染 - stopRemoteView](#class-stopRemoteView)	
+    * [1.28  打开/关闭本地麦克风 - muteLocalMic](#class-muteLocalMic)	
+    * [1.29  打开/关闭本地视频 - muteLocalVideo](#class-muteLocalVideo)		
+    * [1.30  应用静音 - enableAllAudioPlay](#class-enableAllAudioPlay)	
+    * [1.31  打开/关闭远端音频 - muteRemoteAudio](#class-muteRemoteAudio)	
+    * [1.32  打开/关闭远端视频 - muteRemoteVideo](#class-muteRemoteVideo)	
+    * [1.33  是否为自动发布模式 - isAutoPublish](#class-isAutoPublish)	
+    * [1.34  是否为自动订阅模式 - isAutoSubscribe](#class-isAutoSubscribe)	
+    * [1.35  切换摄像头 - switchCamera](#class-switchCamera)
+    * [1.36  设置RTSP视频源 - enableExtendRtspVideocapture](#class-enableExtendRtspVideocapture)
+    * [1.37  设置自定义外部视频源 - enableExtendVideocapture](#class-enableExtendVideocapture)	
+    * [1.38  设置音频数据监听 - regAudioFrameCallback](#class-regAudioFrameCallback)	
+    * [1.39  添加micphone混音文件 - startAudioMixing](#class-startAudioMixing)	
+    * [1.40  停止micphone混音 - stopAudioMixing](#class-stopAudioMixing)	
+    * [1.41  设置桌面编码参数 - setDesktopProfile](#class-setDesktopProfile)	
+    * [1.42  设置桌面采集参数 - setCaptureScreenPagrams](#class-setCaptureScreenPagrams)	
+    * [1.43  设置桌面采集类型 - setUseDesktopCapture](#class-setUseDesktopCapture)	
+    * [1.44  获取屏幕个数 - getDesktopNums](#class-getDesktopNums)	
+    * [1.45  获取屏幕信息 - getDesktopInfo](#class-getDesktopInfo)	
+    * [1.46  获取窗口个数 - getWindowNums](#class-getWindowNums)
+    * [1.47  获取窗口信息 - getWindowInfo](#class-getWindowInfo)	
     * [1.48  开启录制 - startRecord](#class-startRecord)	
     * [1.49  停止录制 - stopRecord](#class-stopRecord)	
     * [1.50  设置日志等级 - setLogLevel](#class-setLogLevel)	
     * [1.51  获取SDK 版本 - getSdkVersion](#class-getSdkVersion)	
     * [1.52  销毁引擎 - destroy](#class-destroy)	
     * [1.53  设置外部音频采集 - enableExtendAudiocapture](#class-enableExtendAudiocapture)
+	* [1.54  获取引擎 - sharedInstance](#class-sharedInstance)
+	* [1.55  设置SDK appid 对应秘钥 - setTokenSecKey](#class-setTokenSecKey)
+	* [1.56  设置编码格式 - setVideoCodec](#class-setVideoCodec)
+	* [1.57  启用通过桌面通道发送外部数据 - enableExtendVideocaptureAsScreen](#class-enableExtendVideocaptureAsScreen)
+	* [1.58  启用通过桌面通道发送摄像头数据 - enableCameraAsScreen](#class-enableCameraAsScreen)
+	* [1.59  添加mp4 文件列表 - addMp4File](#class-addMp4File)
+	* [1.60  设置媒体服务器获取方式 - setServerGetFrom](#class-setServerGetFrom)
+	* [1.61  设置媒体服务器地址 - setServerUrl](#class-setServerUrl)
+	* [1.62  发送自定义消息 - sendMessage](#class-sendMessage)
+	* [1.63  发送外部采集视频数据 - pushVideoFrameData](#class-pushVideoFrameData)
+	* [1.64  发送外部采集音频数据 - pushAudioFrameData](#class-pushAudioFrameData)
+	* [1.65  设置视频编码参数 - setVideoProfile](#class-setVideoProfileEx)
+	* [1.66  是否为纯音频模式 - isAudioOnly](#class-isAudioOnly)
+
 
 * [二、UcloudMediaDevice设备引擎接口类](#Device)    
     * [2.1  初始化设备模块 - UCloudRtcMediaDevice](#Device-UCloudRtcMediaDevice)		
@@ -107,8 +122,8 @@
     * [4.16  桌面采集参数 - tUCloudRtcScreenPargram](#struct-tUCloudRtcScreenPargram)		
     * [4.17  桌面采集类型 - eUCloudRtcDesktopType](#struct-eUCloudRtcDesktopType)		
     * [4.18  桌面参数 - tUCloudRtcDeskTopInfo](#struct-tUCloudRtcDeskTopInfo)		
-    * [4.19  通道类型 - eUCloudRtcUserStreamRoleCHANNEL](#struct-eUCloudRtcUserStreamRoleCHANNEL)		
-    * [4.20  流权限 - eUCloudRtcUserStreamRoleSTREAM](#struct-eUCloudRtcUserStreamRoleSTREAM)	
+    * [4.19  通道类型 - eUCloudRtcChannelType](#struct-eUCloudRtcChannelType)		
+    * [4.20  流权限 - eUCloudRtcUserStreamRole](#struct-eUCloudRtcUserStreamRole)	
     * [4.21  渲染窗口 - tUCloudRtcVideoCanvas](#struct-tUCloudRtcVideoCanvas)		
     * [4.22  登录信息类 - tUCloudRtcAuth](#struct-tUCloudRtcAuth)		
     * [4.23  当前媒体状态统计 - tUCloudRtcStreamStats](#struct-tUCloudRtcStreamStats)		
@@ -118,13 +133,21 @@
     * [4.27  视频数据帧 - tUCloudRtcVideoFrame](#struct-tUCloudRtcVideoFrame)		
     * [4.28  消息回调事件接口类 - UCloudRtcEventListener](#struct-UCloudRtcEventListener)		
     * [4.29  音频测试回调 - UCloudRtcMediaListener](#struct-UCloudRtcMediaListener)		
-    * [4.30  音频数据回调 - UCloudRtcAudioFrameCallback](#struct-UCloudRtcAudioFrameCallback)			
-    * [4.31  视频扩展数据源 - UCloudRtcExtendVideoCaptureSource](#struct-UCloudRtcExtendVideoCaptureSource)		
+    * [4.30  音频数据回调 - UCloudRtcAudioFrameCallback](#struct-UCloudRtcAudioFrameCallback)				
     * [4.32  视频数据回调 - UCloudRtcExtendVideoRender](#struct-UCloudRtcExtendVideoRender)		
     * [4.33  视频数据回调监听类（yuv420p格式） - UCloudRtcVideoFrameObserver](#struct-UCloudRtcVideoFrameObserver)		
     * [4.34  视频渲染类型 - eUCloudRtcRenderType](#struct-eUCloudRtcRenderType)		
     * [4.35  视频编码类型 - eUCloudRtcVideoCodec](#struct-eUCloudRtcVideoCodec)		
-    * [4.36  视频参数 - tUCloudVideoConfig](#struct-tUCloudVideoConfig)		
+    * [4.36  视频参数 - tUCloudRtcVideoConfig](#struct-tUCloudRtcVideoConfig)	
+	* [4.37  转推录制视频合流模式 - eUCloudRtcRelayMode](#struct-eUCloudRtcRelayMode)	
+	* [4.38  SDK 使用模式 - eUCloudRtcSdkMode](#struct-eUCloudRtcSdkMode)
+	* [4.39  转推录制视频合流流信息 - tUCloudRtcRelayStream](#struct-tUCloudRtcRelayStream)
+	* [4.40  转推录制合流模板 - tUCloudRtcRelayStream](#struct-tUCloudRtcRelayStream)
+	* [4.41  媒体网关获取方式 - eUCloudRtcServerGetFrom](#struct-eUCloudRtcServerGetFrom)
+	* [4.42  SDK 运行模式 - eUCloudRtcClassType](#struct-eUCloudRtcClassType)
+	* [4.43  本地发送状态信息 - tUCloudRtcUpNetworkSt](#struct-tUCloudRtcUpNetworkSt)
+	* [4.44  文件信息 - tUCloudRtcFileName](#struct-tUCloudRtcFileName)
+	* [4.45  SDK初始化环境信息 - tUCloudRtcInitContext](#struct-tUCloudRtcInitContext)
     
 	
 <a name='class'></a>
@@ -149,8 +172,27 @@ UCloudRtcEngine* 引擎类指针
 
 无
 
+<a name='class-UCloudRtcEngineExt'></a>
+### 1.2  获取引擎
 
-### 1.2  绑定监听事件
+static UCloudRtcEngine *sharedInstance(tUCloudRtcInitContext& initcontext)
+
+**返回值**
+
+UCloudRtcEngine* 引擎类指针
+
+**参数说明**    
+
+| 名称    | 说明 | 数据类型 | 可空 |
+| -| -| -| -|
+|  initcontext[in]   | tUCloudRtcInitContext <br> initcontext     | Struct | N |
+
+**消息回调**
+
+无
+
+<a name='class-regRtcEventListener'></a>
+### 1.3  绑定监听事件
 
 void regRtcEventListener(UCloudRtcEventListener* listener)
 
@@ -162,13 +204,14 @@ void regRtcEventListener(UCloudRtcEventListener* listener)
 
 | 名称    | 说明 | 数据类型 | 可空 |
 | -| -| -| -|
-|  listener[in]   | UCloudRtcEventListener <br> eUCloudRtcSdkMode     | Class | N |
+|  listener[in]   | UCloudRtcEventListener      | Class | N |
 
 **消息回调**
 
 无
 
-### 1.3  设置SDK模式
+<a name='class-setSdkMode'></a>
+### 1.4  设置SDK模式
 
 virtual int setSdkMode (eUCloudRtcSdkMode mode)
 
@@ -186,9 +229,9 @@ virtual int setSdkMode (eUCloudRtcSdkMode mode)
 
 无
 
-<a name='class-setChannelType('></a>
+<a name='class-setChannelType'></a>
 
-###  1.4  设置应用模式
+###  1.5  设置应用模式
 
 virtual int setChannelType(eUCloudRtcUserStreamRole TYPE)
 
@@ -208,7 +251,7 @@ virtual int setChannelType(eUCloudRtcUserStreamRole TYPE)
 
 <a name='class-setStreamRole'></a>
 
-###  1.5  设置流操作权限
+###  1.6  设置流操作权限
 
 virtual int setStreamRole(eUCloudRtcUserStreamRole role)
 
@@ -229,7 +272,7 @@ virtual int setStreamRole(eUCloudRtcUserStreamRole role)
 
 <a name='class-setAudioOnlyMode'></a>
 
-###  1.6  设置纯音频模式
+###  1.7  设置纯音频模式
 
 virtual int setAudioOnlyMode(bool audioOnly)
 
@@ -249,7 +292,7 @@ virtual int setAudioOnlyMode(bool audioOnly)
 
 <a name='class-setAutoPublishSubscribe'></a>
 
-###  1.7  设置自动发布和订阅
+###  1.8  设置自动发布和订阅
 
 virtual int setAutoPublishSubscribe(bool autoPub, bool autoSub)
 
@@ -271,7 +314,7 @@ virtual int setAutoPublishSubscribe(bool autoPub, bool autoSub)
 
 <a name='class-configLocalAudioPublish'></a>
 
-###  1.8  配置是否自动发布本地音频
+###  1.9  配置是否自动发布本地音频
 
 virtual int configLocalAudioPublish(bool enable)
 
@@ -292,7 +335,7 @@ virtual int configLocalAudioPublish(bool enable)
 
 <a name='class-isLocalAudioPublishEnabled'></a>
 
-###  1.9  是否发布音频
+###  1.10  是否发布音频
 
 virtual bool isLocalAudioPublishEnabled()
 
@@ -313,7 +356,7 @@ true 发布音频;false 不发布音频。
 
 <a name='class-configLocalCameraPublish'></a>
 
-###  1.10  配置是否自动发布本地摄像头
+###  1.11  配置是否自动发布本地摄像头
 
 virtual int configLocalCameraPublish(bool enable)
 
@@ -333,7 +376,7 @@ virtual int configLocalCameraPublish(bool enable)
 
 <a name='class-isLocalCameraPublishEnabled'></a>
 
-###  1.11  是否发布摄像头
+###  1.12  是否发布摄像头
 
 virtual bool isLocalCameraPublishEnabled()
 
@@ -353,7 +396,7 @@ true 发布摄像头;false 不发布摄像头。
 
 <a name='class-configLocalScreenPublish'></a>
 
-###  1.12  配置是否自动发布本地桌面
+###  1.13  配置是否自动发布本地桌面
 
 virtual int configLocalScreenPublish (bool enable)
 
@@ -373,7 +416,7 @@ virtual int configLocalScreenPublish (bool enable)
 
 <a name='class-isLocalScreenPublishEnabled'></a>
 
-###  1.13  是否发布桌面
+###  1.14  是否发布桌面
 
 virtual bool isLocalScreenPublishEnabled()
 
@@ -394,7 +437,7 @@ true 发布桌面;false 不发布桌面。
 
 <a name='class-setVideoProfile'></a>
 
-###  1.14  设置视频编码参数
+###  1.15  设置视频编码参数
 
 virtual void setVideoProfile(eUCloudRtcVideoProfile& profile，tUCloudVideoConfig& videoconfig)
 
@@ -422,7 +465,7 @@ profile为有效值时，后面的参数无意义。
 
 <a name='class-muteCamBeforeJoin'></a>
 
-###  1.15  入会时关闭摄像头
+###  1.16  入会时关闭摄像头
 
 virtual int muteCamBeforeJoin(bool mute)
 
@@ -444,7 +487,7 @@ virtual int muteCamBeforeJoin(bool mute)
 
 <a name='class-muteMicBeforeJoin'></a>
 
-###  1.16  入会时关闭麦克风
+###  1.17  入会时关闭麦克风
 
 virtual int muteMicBeforeJoin (bool mute)
 
@@ -466,7 +509,7 @@ virtual int muteMicBeforeJoin (bool mute)
 
 <a name='class-joinChannel'></a>
 
-###  1.17  加入房间
+###  1.18  加入房间
 
 virtual int joinChannel(tUCloudRtcAuth & auth)
 
@@ -488,7 +531,7 @@ virtual int joinChannel(tUCloudRtcAuth & auth)
 
 <a name='class-leaveChannel'></a>
 
-###  1.18  离开房间
+###  1.19  离开房间
 
 virtual int leaveChannel()
 
@@ -509,7 +552,7 @@ code回调为0代表成功，其他代表失败。
 
 <a name='class-publish'></a>
 
-###  1.19  发布本地流
+###  1.20  发布本地流
 
 virtual int publish(eUCloudRtcMeidaTypetype, bool hasvideo, bool hasaudio)
 
@@ -535,7 +578,7 @@ virtual int publish(eUCloudRtcMeidaTypetype, bool hasvideo, bool hasaudio)
 
 <a name='class-unPublish'></a>
 
-###  1.20  停止发布本地流
+###  1.21  停止发布本地流
 
 virtual int unPublish(eUCloudRtcMeidaType type)
 
@@ -557,7 +600,7 @@ virtual int unPublish(eUCloudRtcMeidaType type)
 
 <a name='class-startPreview'></a>
 
-###  1.21  开启本地渲染
+###  1.22  开启本地渲染
 
 virtual int startPreview(tUCloudRtcVideoCanvas& view)
 
@@ -577,7 +620,7 @@ virtual int startPreview(tUCloudRtcVideoCanvas& view)
 
 <a name='class-stopPreview'></a>
 
-###  1.22  停止本地渲染
+###  1.23  停止本地渲染
 
 virtual int stopPreview (tUCloudRtcVideoCanvas& view)
 
@@ -597,7 +640,7 @@ virtual int stopPreview (tUCloudRtcVideoCanvas& view)
 
 <a name='class-subscribe'></a>
 
-###  1.23 订阅远端媒体流
+###  1.24 订阅远端媒体流
 
 virtual int subscribe(tUCloudRtcStreamInfo & info)
 
@@ -619,7 +662,7 @@ virtual int subscribe(tUCloudRtcStreamInfo & info)
 
 <a name='class-unSubscribe'></a>
 
-###  1.24 取消订阅远端媒体流
+###  1.25 取消订阅远端媒体流
 
 virtual void unSubscribe(tUCloudRtcStreamInfo& info)
 
@@ -641,7 +684,7 @@ virtual void unSubscribe(tUCloudRtcStreamInfo& info)
 
 <a name='class-startRemoteView'></a>
 
-###  1.25  开启远端渲染
+###  1.26  开启远端渲染
 
 virtual int startRemoteView (tUCloudRtcVideoCanvas & view)
 
@@ -663,7 +706,7 @@ virtual int startRemoteView (tUCloudRtcVideoCanvas & view)
 
 <a name='class-stopRemoteView'></a>
 
-###  1.26  停止远端渲染
+###  1.27  停止远端渲染
 
 virtual int stopRemoteView (tUCloudRtcVideoCanvas & view)
 
@@ -686,7 +729,7 @@ virtual int stopRemoteView (tUCloudRtcVideoCanvas & view)
 
 <a name='class-muteLocalMic'></a>
 
-###  1.27  打开/关闭本地麦克风
+###  1.28  打开/关闭本地麦克风
 
 virtual int muteLocalMic(bool mute)
 
@@ -711,7 +754,7 @@ virtual int muteLocalMic(bool mute)
 
 <a name='class-muteLocalVideo'></a>
 
-###  1.28  打开/关闭本地视频
+###  1.29  打开/关闭本地视频
 
 virtual int muteLocalVideo(bool mute, eUCloudRtcMeidaType mtype)
 
@@ -735,7 +778,7 @@ virtual int muteLocalVideo(bool mute, eUCloudRtcMeidaType mtype)
 
 <a name='class-enableAllAudioPlay'></a>
 
-###  1.29  应用静音
+###  1.30  应用静音
 
 virtual int enableAllAudioPlay(bool enable)
 
@@ -758,7 +801,7 @@ virtual int enableAllAudioPlay(bool enable)
 
 <a name='class-muteRemoteAudio'></a>
 
-###  1.30  打开/关闭远端音频
+###  1.31  打开/关闭远端音频
 
 virtual int muteRemoteAudio (tUCloudRtcStreamInfo& info,bool mute)
 
@@ -782,7 +825,7 @@ code回调为0代表成功，其他代表失败。
 
 <a name='class-muteRemoteVideo'></a>
 
-###  1.31  打开/关闭远端视频
+###  1.32  打开/关闭远端视频
 
 virtual int muteRemoteVideo(tUCloudRtcStreamInfo& info, bool mute)
 
@@ -806,7 +849,7 @@ code回调为0代表成功，其他代表失败。
 
 <a name='class-isAutoPublish'></a>
 
-###  1.32  是否为自动发布模式
+###  1.33  是否为自动发布模式
 
 virtual bool isAutoPublish()
 
@@ -825,7 +868,7 @@ true 是，false 不是。
 
 <a name='class-isAutoSubscribe'></a>
 
-###  1.33  是否为自动订阅模式
+###  1.34  是否为自动订阅模式
 
 virtual bool isAutoSubscribe()
 
@@ -844,7 +887,7 @@ true 是，false 不是。
 
 <a name='class-switchCamera'></a>
 
-###  1.34  切换摄像头
+###  1.35  切换摄像头
 
 virtual int switchCamera(tUCloudRtcDeviceInfo& info)
 
@@ -864,7 +907,7 @@ virtual int switchCamera(tUCloudRtcDeviceInfo& info)
 
 <a name='class-enableExtendRtspVideocapture'></a>
 
-###  1.35  设置RTSP视频源
+###  1.36  设置RTSP视频源
 
 virtual int enableExtendRtspVideocapture(eUCloudRtcMeidaType type, bool enable, const char* rtspurl)
 
@@ -888,9 +931,9 @@ virtual int enableExtendRtspVideocapture(eUCloudRtcMeidaType type, bool enable, 
 
 <a name='class-enableExtendVideocapture'></a>
 
-###  1.36  设置自定义外部视频源
+###  1.37  设置自定义外部视频源
 
-virtual int enableExtendVideocapture(bool enable, UCloudRtcExtendVideoCaptureSource* videocapture)
+virtual int enableExtendVideocapture(bool enable)
 
 设置自定义外部视频源。
 
@@ -911,7 +954,7 @@ virtual int enableExtendVideocapture(bool enable, UCloudRtcExtendVideoCaptureSou
 
 <a name='class-regAudioFrameCallback'></a>
 
-###  1.37  设置音频数据监听
+###  1.38  设置音频数据监听
 
 virtual void regAudioFrameCallback(UCloudRtcAudioFrameCallback* callback)
 
@@ -932,7 +975,7 @@ virtual void regAudioFrameCallback(UCloudRtcAudioFrameCallback* callback)
 
 <a name='class-startAudioMixing'></a>
 
-###  1.38  添加micphone混音文件
+###  1.39  添加micphone混音文件
 
 virtual int startAudioMixing(const char* filepath, bool replace, bool loop,float musicvol)
 
@@ -955,7 +998,7 @@ virtual int startAudioMixing(const char* filepath, bool replace, bool loop,float
 
 <a name='class-stopAudioMixing'></a>
 
-###  1.39  停止micphone混音
+###  1.40  停止micphone混音
 
 virtual int stopAudioMixing()
 
@@ -972,11 +1015,9 @@ virtual int stopAudioMixing()
 无
 
 
-
-
 <a name='class-setDesktopProfile'></a>
 
-###  1.40  设置桌面编码参数
+###  1.41  设置桌面编码参数
 
 virtual void setDesktopProfile (eUCloudRtcVideoProfile& profile)
 
@@ -996,9 +1037,10 @@ virtual void setDesktopProfile (eUCloudRtcVideoProfile& profile)
 
 无
 
+
 <a name='class-setCaptureScreenPagrams'></a>
 
-###  1.41  设置桌面采集参数
+###  1.42  设置桌面采集参数
 
 virtual void setCaptureScreenPagrams (tUCloudRtcScreenPargram& par)
 
@@ -1018,7 +1060,7 @@ virtual void setCaptureScreenPagrams (tUCloudRtcScreenPargram& par)
 
 <a name='class-setUseDesktopCapture'></a>
 
-###  1.42  设置桌面采集类型
+###  1.43  设置桌面采集类型
 
 virtual int setUseDesktopCapture(eUCloudRtcDesktopType desktoptype)
 
@@ -1038,7 +1080,7 @@ virtual int setUseDesktopCapture(eUCloudRtcDesktopType desktoptype)
 
 <a name='class-getDesktopNums'></a>
 
-###  1.43  获取屏幕个数
+###  1.44  获取屏幕个数
 
 virtual void getDesktopNums ()
 
@@ -1056,7 +1098,7 @@ virtual void getDesktopNums ()
 
 <a name='class-getDesktopInfo'></a>
 
-###  1.44  获取屏幕信息
+###  1.45  获取屏幕信息
 
 virtual int getDesktopInfo(int pos, tUCloudRtcDeskTopInfo& info)
 
@@ -1077,7 +1119,7 @@ virtual int getDesktopInfo(int pos, tUCloudRtcDeskTopInfo& info)
 
 <a name='class-getWindowNums'></a>
 
-###  1.45  获取窗口个数
+###  1.46  获取窗口个数
 
 virtual void getWindowNums ()
 
@@ -1095,7 +1137,7 @@ virtual void getWindowNums ()
 
 <a name='class-getWindowInfo'></a>
 
-###  1.46  获取窗口信息
+###  1.47  获取窗口信息
 
 virtual int getWindowInfo (int pos, tUCloudRtcDeskTopInfo& info)
 
@@ -1222,7 +1264,7 @@ static void destroy()
 
 ### 1.53  开启外部音频采集
 
-int enableExtendAudiocapture(bool enable, UCloudRtcExtendAudioCaptureSource* audiocapture)
+int enableExtendAudiocapture(bool enable)
 
 **返回值**
 
@@ -1235,6 +1277,241 @@ int enableExtendAudiocapture(bool enable, UCloudRtcExtendAudioCaptureSource* aud
 | -| -| -| -|
 |  enable[in]   | 设置true还是false     | bool | N |
 | audiocapture[in]    | 外部音频源。<br> 详见UCloudRtcExtendAudioCaptureSource参数说明。  | struct| N |
+
+**消息回调**
+
+无
+
+<a name='class-setTokenSecKey'></a>
+
+### 1.54  设置SDK appid 对应秘钥
+
+int setTokenSecKey(const char* seckey)
+
+**返回值**
+
+0 代表成功
+
+**参数说明**    
+
+
+| 名称    | 说明 | 数据类型 | 可空 |
+| -| -| -| -|
+|  seckey[in]   | 试用模式下appid 对应的 appkey     | const char* | N |
+
+**消息回调**
+
+无
+
+<a name='class-setVideoCodec'></a>
+
+### 1.55  设置编码格式
+
+int setVideoCodec(eUCloudRtcVideoCodec codec)
+
+**返回值**
+
+0 代表成功
+
+**参数说明**    
+
+
+| 名称    | 说明 | 数据类型 | 可空 |
+| -| -| -| -|
+|  codec[in]   | eUCloudRtcVideoCodec 视频编码格式，建议h264    | enum | N |
+
+**消息回调**
+
+无
+
+<a name='class-enableExtendVideocaptureAsScreen'></a>
+
+### 1.56  启用通过桌面通道发送外部数据
+
+int enableExtendVideocaptureAsScreen(bool enable)
+
+**返回值**
+
+0 代表成功
+
+**参数说明**    
+
+
+| 名称    | 说明 | 数据类型 | 可空 |
+| -| -| -| -|
+|  enable[in]   | 是否通过桌面采集发送自编码数据   | bool | N |
+
+**消息回调**
+
+无
+
+<a name='class-enableCameraAsScreen'></a>
+
+### 1.57  启用通过桌面通道发送摄像头数据
+
+int enableCameraAsScreen(bool enable, eUCloudRtcScreenProfile profile, tUCloudRtcDeviceInfo& info)
+
+**返回值**
+
+0 代表成功
+
+**参数说明**    
+
+
+| 名称    | 说明 | 数据类型 | 可空 |
+| -| -| -| -|
+|  enable[in]   | 是否通过桌面采集发送自编码数据   | bool | N |
+|  profile[in]   | 编码等级   | enum | N |
+|  info[in]   | 摄像头设备信息   | struct | N |
+
+**消息回调**
+
+无
+
+<a name='class-addMp4File'></a>
+
+### 1.58  添加文件列表
+
+int addMp4File(tUCloudRtcFileName* filelist, int listsize, bool cleanup)
+
+**返回值**
+
+0 代表成功
+
+**参数说明**    
+
+
+| 名称    | 说明 | 数据类型 | 可空 |
+| -| -| -| -|
+|  filelist[in]   | 文件列表内容   | struct | N |
+|  listsize[in]   | 文件个数   | int | N |
+|  cleanup[in]   | 是否清空文件列表   | bool | N |
+
+**消息回调**
+
+无
+
+<a name='class-setServerGetFrom'></a>
+
+### 1.59  设置媒体服务器获取方式
+
+int setServerGetFrom(eUCloudRtcServerGetFrom from)
+
+**返回值**
+
+0 代表成功
+
+**参数说明**    
+
+
+| 名称    | 说明 | 数据类型 | 可空 |
+| -| -| -| -|
+|  from[in]   | 获取媒体网关方式，方便用户进行是优化部署   | enum | N |
+
+**消息回调**
+
+无
+
+<a name='class-setServerUrl'></a>
+
+### 1.60  设置媒体服务器地址
+
+int setServerUrl(const char* serverurl)
+
+**返回值**
+
+0 代表成功
+
+**参数说明**    
+
+
+| 名称    | 说明 | 数据类型 | 可空 |
+| -| -| -| -|
+|  serverurl[in]   | 私有化部署时设置媒体网关地址   | const char* | N |
+
+**消息回调**
+
+无
+
+<a name='class-sendMessage'></a>
+
+### 1.61  发送用户自定义消息
+
+int sendMessage(const char* msgid, const char* msgdata)
+
+**返回值**
+
+0 代表成功
+
+**参数说明**    
+
+
+| 名称    | 说明 | 数据类型 | 可空 |
+| -| -| -| -|
+|  msgid[in]   | 消息标识   | const char* | N |
+|  msgdata[in]   | 消息内容   | const char* | N |
+
+**消息回调**
+
+无
+
+<a name='class-pushVideoFrameData'></a>
+
+### 1.62  发送外部采集视频数据
+
+void pushVideoFrameData(eUCloudRtcMeidaType mediatype, tUCloudRtcVideoFrame* frame)
+
+**返回值**
+
+无
+
+**参数说明**    
+
+
+| 名称    | 说明 | 数据类型 | 可空 |
+| -| -| -| -|
+|  mediatype[in]   | 媒体类型 桌面流或者摄像头流   | enum | N |
+|  frame[in]   | 外部传入数据   | struct | N |
+
+**消息回调**
+
+无
+
+<a name='class-pushAudioFrameData'></a>
+
+### 1.63  发送外部采集音频数据
+
+void pushAudioFrameData(tUCloudRtcAudioFrame* frame)
+
+**返回值**
+
+无
+
+**参数说明**    
+
+
+| 名称    | 说明 | 数据类型 | 可空 |
+| -| -| -| -|
+|  frame[in]   | 外部传入数据   | struct | N |
+
+**消息回调**
+
+无
+
+<a name='class-isAudioOnly'></a>
+
+###  1.64  是否为纯音频模式
+
+bool isAudioOnly()
+
+
+**返回值**
+
+true 纯音频格式 false 非纯音频格式
+
+**参数说明**    
+无
+
 
 **消息回调**
 
@@ -1954,7 +2231,7 @@ typedef enum {
 ```cpp
 typedef struct {    
 	const char* mUserId;  // 用户id    
-const char* mStreamId; // 流id    
+	const char* mStreamId; // 流id    
 	bool mEnableVideo;    //启用视频    
 	bool mEnableAudio;    // 启用音频    
 	bool mEnableData;     // 启用数据通道（暂时无效）    
@@ -1968,11 +2245,11 @@ const char* mStreamId; // 流id
 ###  4.6  录制水印位置
 
 ```cpp
-typedef enum {    
+typedef enum {
     UCLOUD_RTC_WATERMARKPOS_LEFTTOP = 1, //左上    
-UCLOUD_RTC_WATERMARKPOS_LEFTBOTTOM， // 左下    
-UCLOUD_RTC_WATERMARKPOS_RIGHTTOP， // 右上    
-UCLOUD_RTC_WATERMARKPOS_LEFTBOTTOM， // 右下    
+	UCLOUD_RTC_WATERMARKPOS_LEFTBOTTOM, // 左下    
+	UCLOUD_RTC_WATERMARKPOS_RIGHTTOP, // 右上    
+	UCLOUD_RTC_WATERMARKPOS_LEFTBOTTOM // 右下    
 } eUCloudRtcWaterMarkPos;    
 ```
 
@@ -2095,7 +2372,7 @@ typedef enum {
 typedef enum {
     UCLOUD_RTC_SCREEN_PROFILE_LOW = 1, //640*360
 	UCLOUD_RTC_SCREEN_PROFILE_MIDDLE, //960*540
-	UCLOUD_RTC_SCREEN_PROFILE_HIGH，// 1280*720
+	UCLOUD_RTC_SCREEN_PROFILE_HIGH,// 1280*720
     UCLOUD_RTC_SCREEN_PROFILE_HIGH_PLUS  // 1920*1080
 } eUCloudRtcScreenProfile;
 ```
@@ -2121,8 +2398,8 @@ typedef struct
 
 ```cpp
 typedef enum {
-	UCLOUD_RTC_DESKTOPTYPE_SCREEN = 1, 采集桌面
-	UCLOUD_RTC_DESKTOPTYPE_WINDOW 采集窗口
+	UCLOUD_RTC_DESKTOPTYPE_SCREEN = 1, //采集桌面
+	UCLOUD_RTC_DESKTOPTYPE_WINDOW  //采集窗口
 } eUCloudRtcDesktopType;
 ```
 
@@ -2133,8 +2410,8 @@ typedef enum {
 ```cpp
 typedef struct
 {
-	eUCloudRtcDesktopType mType;  桌面类型
-	int mDesktopId;  id 标识
+	eUCloudRtcDesktopType mType;  //桌面类型
+	int mDesktopId;  //id 标识
 	char mDesktopTitle[MAX_WINDOWS_TILE_LEN]; //桌面标题
 } tUCloudRtcDeskTopInfo;
 ```
@@ -2238,6 +2515,8 @@ typedef struct {
 	int mSimpleRate;  // 采样频率
 	int mChannels;    // 声道数
 	int mNumSimples;  //采集样本数
+	int mRealDataSize ;  // 真实数据大小
+	int mDataType ;    // 0 编码好数据（opus） 1 pcm 数据
 } tUCloudRtcAudioFrame;
 ```
 
@@ -2248,9 +2527,11 @@ typedef struct {
 ```cpp
 typedef enum {
 	UCLOUD_RTC_VIDEO_FRAME_TYPE_I420 = 1,
+	UCLOUD_RTC_VIDEO_FRAME_TYPE_I422 ,
 	UCLOUD_RTC_VIDEO_FRAME_TYPE_RGB24,
 	UCLOUD_RTC_VIDEO_FRAME_TYPE_RGBA,
 	UCLOUD_RTC_VIDEO_FRAME_TYPE_ARGB,
+	UCLOUD_RTC_VIDEO_FRAME_TYPE_NATIVE // 编码好数据（h264）
 } eUCloudRtcVideoFrameType;
 ```
 
@@ -2261,8 +2542,11 @@ typedef enum {
 ```cpp
 typedef struct {
 	unsigned char* mDataBuf;
+	unsigned int mDataSize ; //仅对编码好数据有效
 	int mWidth;
 	int mHeight;
+	int mFrameType ; // 0 关键帧 1 非关键帧
+	int64_t mTimeStampms ;
 	eUCloudRtcVideoFrameType mVideoType;
 } tUCloudRtcVideoFrame;
 ```
@@ -2306,27 +2590,43 @@ virtual void onUnSubscribeResult(const int code, const char* msg, tUCloudRtcStre
 // 操作本地媒体流结果回调
 virtual void onLocalStreamMuteRsp(const int code, const char* msg,	eUCloudRtcMeidaType mediatype, UCloudTracktype tracktype, bool mute) {}
 // 操作远端媒体流结果回调
-	virtual void onRemoteStreamMuteRsp(const int code, const char* msg, const char* uid, eUCloudRtcMeidaType mediatype, eUCloudRtcTrackType tracktype, bool mute) {}
+virtual void onRemoteStreamMuteRsp(const int code, const char* msg, const char* uid, eUCloudRtcMeidaType mediatype, eUCloudRtcTrackType tracktype, bool mute) {}
 // 远端媒体流状态回调
-	virtual void onRemoteTrackNotify(const char* uid, eUCloudRtcMeidaType mediatype, eUCloudRtcTrackType tracktype, bool mute) {}
+virtual void onRemoteTrackNotify(const char* uid, eUCloudRtcMeidaType mediatype, eUCloudRtcTrackType tracktype, bool mute) {}
 //发送状态信息
-	virtual void onSendRTCStats(tUCloudRtcStreamStats & rtstats) {}
+virtual void onSendRTCStats(tUCloudRtcStreamStats & rtstats) {}
 //接收状态信息
-	virtual void onRemoteRTCStats(tUCloudRtcStreamStats rtstats) {}
+virtual void onRemoteRTCStats(tUCloudRtcStreamStats rtstats) {}
 //开启录制回调
 virtual void onStartRecord (const int code, const char* msg, tUCloudRtcRecordInfo& info) {}
 // 结束录制回调
 virtual void onStopRecord (const int code, const char* msg, const char* recordid) {}
 // 麦克风能量回调
-	virtual void onMiceAudioLevel(int volume) {} 
+virtual void onLocalAudioLevel(int volume) {} 
 // 远端能量回调
-	virtual void onRemoteAudioLevel(const char* uid, int volume) {}
+virtual void onRemoteAudioLevel(const char* uid, int volume) {}
+//本地发送状态上报
+virtual void onUpNetworkState(tUCloudRtcUpNetworkSt& rtcst) {}
 // 踢下线
 virtual void onKickoff(int code) {}
 // 警告
 virtual void onWarning(int warn) {}
 // 错误
-    virtual void onError(int error) {}
+virtual void onError(int error) {}
+
+//文件推流状态回调
+virtual void onFileOpenError(const char* filename, int code) {}
+//某个文件开始推流
+virtual void onFileDataBegin(const char* filename) {}
+//某个文件推流结束
+virtual void onFileDataEnd(const char* filename) {}
+//文件列表推流结束
+virtual void onFileListEnd(const char* filename) {}
+
+//用户自定义消息发送响应
+virtual void onSendMsgResult(int code , const char* msg, const char* msgid, const char* msgdata){}
+// 收到其他用户发送自定义消息
+virtual void onUserMsgNotify(const char* msgfrom, const char* msgdata){}
 };
 ```
 
@@ -2339,7 +2639,7 @@ class  UCloudRtcMediaListener
 {
 public:
 	// 音频能量回调   （0--255）
-    virtual void onMiceAudioLevel(int volume) {} 
+    virtual void onMicAudioLevel(int volume) {} 
 };
 ```
 
@@ -2351,30 +2651,19 @@ public:
 class  UCloudRtcAudioFrameCallback
 {
 public:
+	virtual ~UCloudRtcAudioFrameCallback() {}
 	//本地音频回调
 	virtual void onLocalAudioFrame(tUCloudRtcAudioFrame* audioframe) {}
    // 远端混音数据
 	virtual void onRemoteMixAudioFrame(tUCloudRtcAudioFrame* audioframe) {} 
-};
-```
-
-<a name='struct-UCloudRtcExtendVideoCaptureSource'></a>
-
-###  4.31  视频扩展数据源
-
-用户可以扩展自己的视频输入 音频通过doCaptureFrame 采集数据。
-
-```cpp
-class  UCloudRtcExtendVideoCaptureSource
-{
-public:
-	virtual  bool doCaptureFrame(tUCloudRtcVideoFrame* videoframe) = 0; 
+	//单个peer 音频数据
+	virtual void onRemotePeerAudioFrame(tUCloudRtcAudioFrame* audioframe){} 
 };
 ```
 
 <a name='struct-UCloudRtcExtendVideoRender'></a>
 
-###  4.32  视频数据回调
+###  4.31  视频数据回调
 
 用户结合渲染 可以获取数据进行自己渲染。
 
@@ -2388,7 +2677,7 @@ public:
 
 <a name='struct-UCloudRtcVideoFrameObserver'></a>
 
-###  4.33  视频数据回调监听类（yuv420p格式）
+###  4.32  视频数据回调监听类（yuv420p格式）
 
 引擎内存回调camera 采集数据 和 扩展数据源使用方便做视频前置处理。
 
@@ -2402,19 +2691,19 @@ public:
 
 <a name='struct-eUCloudRtcRenderType'></a>
 
-###  4.34  视频渲染类型
+###  4.33  视频渲染类型
 
 ```cpp
 typedef enum {
     UCLOUD_RTC_RENDER_TYPE_GDI = 1,
-	UCLOUD_RTC_RENDER_TYPE_D3D = 2，
-    UCLOUD_RTC_RENDER_TYPE_EXTEND = 3
+	UCLOUD_RTC_RENDER_TYPE_D3D,
+    UCLOUD_RTC_RENDER_TYPE_EXTEND
 } eUCloudRtcRenderType;
 ```
 
 <a name='struct-eUCloudRtcVideoCodec'></a>
 
-###  4.35  视频编码类型
+###  4.34  视频编码类型
 
 ```cpp
 typedef enum {
@@ -2423,29 +2712,138 @@ typedef enum {
 } eUCloudRtcVideoCodec;
 ```
 
-<a name='struct-tUCloudVideoConfig'></a>
+<a name='struct-tUCloudRtcVideoConfig'></a>
 
-###  4.36  视频参数
+###  4.35  视频参数
 
 ```cpp
 typedef struct {
 	int mWidth; // 宽
 	int mHeight; // 高
 	int mFrameRate; // 帧率
-} tUCloudVideoConfig;
+	int mMinBitrate ; // 最大码率
+	int mMaxBitrate ; // 最小码率
+} tUCloudRtcVideoConfig;
 ```
 
 
-<a name='struct-UCloudRtcExtendAudioCaptureSource'></a>
+<a name='struct-UCloudRtcExtendVideoDecoder'></a>
 
-###  4.40  音频外部采集
+###  4.36  外部解码器
 
 ```cpp
-class  _EXPORT_API UCloudRtcExtendAudioCaptureSource
+只能解码 h264 数据
+class _EXPORT_API UCloudRtcExtendVideoDecoder
 {
 public:
-	virtual ~UCloudRtcExtendAudioCaptureSource() {}
-	virtual  bool doCaptureAudioFrame(tUCloudRtcAudioFrame* audioframe) = 0;
+	virtual ~UCloudRtcExtendVideoDecoder() {}
+	virtual  void onRemoteEncodedFrame(const char* uid, eUCloudRtcMeidaType mtype, const tUCloudRtcVideoFrame* videoframe) = 0;
 };
+```
+
+<a name='struct-eUCloudRtcRelayMode'></a>
+
+###  4.37  转推录制视频合流模式
+
+```cpp
+typedef enum {
+	UCLOUD_RTC_RELAYMODE_AUTO = 1, // 自动模式
+	UCLOUD_RTC_RELAYMODE_MANAUL ,  //手动模式
+}eUCloudRtcRelayMode;
+```
+
+<a name='struct-eUCloudRtcSdkMode'></a>
+###  4.38  SDK 使用模式
+
+```cpp
+typedef enum {
+	UCLOUD_RTC_SDK_MODE_NORMAL = 0,  // 正式模式，需要用户自己生成token
+	UCLOUD_RTC_SDK_MODE_TRIVAL   // 试用模式，sdk 可以自己生成token 需要用户设置appkey
+} eUCloudRtcSdkMode;
+```
+
+<a name='struct-tUCloudRtcRelayStream'></a>
+###  4.39  转推录制视频合流流信息
+
+```cpp
+typedef struct {
+	const char* mUid;
+	eUCloudRtcMeidaType mMediaType;
+}tUCloudRtcRelayStream;
+```
+
+<a name='struct-eUCloudRtcMixLayout'></a>
+###  4.40  转推录制合流模板
+
+```cpp
+typedef enum {
+	UCLOUD_RTC_MIX_LAYOUT_NONE,
+	UCLOUD_RTC_MIX_LAYOUT_FLOW,	  
+	UCLOUD_RTC_MIX_LAYOUT_TEACH,	  
+	UCLOUD_RTC_MIX_LAYOUT_CUSTOM,    
+	UCLOUD_RTC_MIX_LAYOUT_SPEAKERMODE, 
+	UCLOUD_RTC_MIX_LAYOUT_MULTIAUTO, 
+	UCLOUD_RTC_MIX_LAYOUT_SINGEVIDEO_AUDIOMIXER, 
+}eUCloudRtcMixLayout;
+```
+
+<a name='struct-eUCloudRtcServerGetFrom'></a>
+###  4.41  媒体网关获取方式
+
+```cpp
+typedef enum 
+{
+	UCLOUD_RTC_SERVER_GET_FROM_UTECH = 1, // 公有云模式
+	UCLOUD_RTC_SERVER_GET_FROM_USER_GATEWAY, // 用户定义 https网关
+	UCLOUD_RTC_SERVER_GET_FROM_USER_DIRECT  // 直连
+}eUCloudRtcServerGetFrom;
+```
+
+<a name='struct-eUCloudRtcClassType'></a>
+###  4.42  SDK 运行模式
+
+```cpp
+typedef enum 
+{
+	UCLOUD_RTC_CLASS_TYPE_NORMAL = 1, // 正常模式 SDK采集或者用户传入采集原始数据
+	UCLOUD_RTC_CLASS_TYPE_AI , // AI 课程模式，仅能试用文件推流
+	UCLOUD_RTC_CLASS_TYPE_RTSP // 转推rtsp 或者 用户编码好视频数据
+}eUCloudRtcClassType;
+```
+
+<a name='struct-tUCloudRtcUpNetworkSt'></a>
+###  4.43  本地发送状态信息
+
+```cpp
+typedef struct {
+	const char* mUserId;
+	const char* mStreamId;
+	int mStreamMtype;
+	int mAvailSendBw = 0;     // unit:bps 可用带宽
+	int mRetranBw = 0; // unit:bps 重传带宽
+	int mBufferDelayMs = 0 ; // unit:ms
+	int mRealEnBw = 0 ;  // unit:bps  实际编码带宽
+}tUCloudRtcUpNetworkSt;
+```
+
+<a name='struct-tUCloudRtcFileName'></a>
+###  4.44  文件信息
+
+```cpp
+typedef struct {
+	char* mFileName; // 文件名
+}tUCloudRtcFileName;
+```
+
+<a name='struct-tUCloudRtcInitContext'></a>
+###  4.45  SDK初始化环境信息
+
+```cpp
+typedef struct {
+	const char* mFilePath ; // 日志文件路径
+	const char* mFileName ;// 日志文件名称
+	eUCloudRtcClassType mClassType ;  // SDK运行模式
+	eUCloudRtcLogLevel mLogLevel ; // 日志等级
+}tUCloudRtcInitContext;
 ```
 

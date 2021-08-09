@@ -97,13 +97,6 @@ void URTCMsgHandler::onFileDataEndHandler(std::string& jsonmsg)
 
 void URTCMsgHandler::onFileListEndHandler(std::string& jsonmsg) 
 {
-    if (mRtcengine)
-    {
-        tRTCStreamInfo info;
-        info.mStreamMtype = UCLOUD_RTC_MEDIATYPE_VIDEO;
-        info.mUserid = "";
-        mRtcengine->UnPublishStream(info) ;
-    }
     
 }
 

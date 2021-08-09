@@ -3,44 +3,45 @@
 
 typedef enum _tUCloudRtcCallbackErrCode {
 	UCLOUD_RTC_CALLBACK_ERR_CODE_OK = 0,
-	UCLOUD_RTC_CALLBACK_ERR_SERVER_CON_FAIL = 5000, //·þÎñÆ÷Á¬½ÓÊ§°Ü
-	UCLOUD_RTC_CALLBACK_ERR_INVAILDSTATE, // ·þÎñ¶ËÁ¬½Ó¶Ï¿ª
-	UCLOUD_RTC_CALLBACK_ERR_SERVER_DIS, // ·þÎñ¶ËÁ¬½Ó¶Ï¿ª
-	UCLOUD_RTC_CALLBACK_ERR_SAME_CMD,  //ÖØ¸´µÄµ÷ÓÃ
-	UCLOUD_RTC_CALLBACK_ERR_NOT_IN_ROOM, //Î´¼ÓÈë·¿¼ä ÎÞ·¢½øÐÐ²Ù×÷ 
-	UCLOUD_RTC_CALLBACK_ERR_ROOM_JOINED, // ÒÑ¼ÓÈë·¿¼ä ÎÞÐè¼ÓÈë
-	UCLOUD_RTC_CALLBACK_ERR_SDK_INNER,   // SDK ÄÚ²¿´íÎó
-	UCLOUD_RTC_CALLBACK_ERR_ROOM_RECONNECTING, // ÖØÁ¬ÖÐ ÇëÇóÎÞ·¨Í¶µÝ      
-	UCLOUD_RTC_CALLBACK_ERR_STREAM_PUBED,  // Á÷ÒÑ¾­·¢²¼  ÎÞÐè·¢²¼
-	UCLOUD_RTC_CALLBACK_ERR_PUB_NO_DEV,  // ·¢²¼ÎÞ¿ÉÓÃ ÒôÆµ ÊÓÆµÉè±¸
-	UCLOUD_RTC_CALLBACK_ERR_STREAM_NOT_PUB, //Á÷Ã»ÓÐ·¢²¼ ÎÞ·¨¶ÔÁ÷½øÐÐ²Ù×÷
-	UCLOUD_RTC_CALLBACK_ERR_STREAM_SUBED,  //Á÷ÒÑ¾­¶©ÔÄ  ÎÞÐè¶©ÔÄ
-	UCLOUD_RTC_CALLBACK_ERR_STREAM_NO_SUB, //Á÷Ã»ÓÐ¶©ÔÄ  ÎÞ·¨
-	UCLOUD_RTC_CALLBACK_ERR_SUB_NO_USER,   //ÎÞ¶ÔÓ¦µÄÓÃ»§ ÎÞ·¨¶©ÔÄ
-	UCLOUD_RTC_CALLBACK_ERR_SUB_NO_STREAM,  // ÎÞ¶ÔÓ¦µÄÃ½ÌåÁ÷
-	UCLOUD_RTC_CALLBACK_ERR_USER_LEAVING, // ÓÃ»§ÕýÔÚÀë¿ª·¿¼ä  ÎÞ·¨½øÐÐÆäËû²Ù×÷
-	UCLOUD_RTC_CALLBACK_ERR_NO_HAS_TRACK,  //ÎÞ¶ÔÓ¦µÄÃ½Ìå¹ìµÀ
-	UCLOUD_RTC_CALLBACK_ERR_MSG_TIMEOUT, // ÏûÏ¢ÇëÇó³¬Ê±
+	UCLOUD_RTC_CALLBACK_ERR_SERVER_CON_FAIL = 5000, //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+	UCLOUD_RTC_CALLBACK_ERR_INVAILDSTATE, // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶Ï¿ï¿½
+	UCLOUD_RTC_CALLBACK_ERR_INVAILDPAGRAM,
+	UCLOUD_RTC_CALLBACK_ERR_SERVER_DIS, // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶Ï¿ï¿½
+	UCLOUD_RTC_CALLBACK_ERR_SAME_CMD,  //ï¿½Ø¸ï¿½ï¿½Äµï¿½ï¿½ï¿½
+	UCLOUD_RTC_CALLBACK_ERR_NOT_IN_ROOM, //Î´ï¿½ï¿½ï¿½ë·¿ï¿½ï¿½ ï¿½Þ·ï¿½ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½ 
+	UCLOUD_RTC_CALLBACK_ERR_ROOM_JOINED, // ï¿½Ñ¼ï¿½ï¿½ë·¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	UCLOUD_RTC_CALLBACK_ERR_SDK_INNER,   // SDK ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½
+	UCLOUD_RTC_CALLBACK_ERR_ROOM_RECONNECTING, // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Þ·ï¿½Í¶ï¿½ï¿½      
+	UCLOUD_RTC_CALLBACK_ERR_STREAM_PUBED,  // ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½è·¢ï¿½ï¿½
+	UCLOUD_RTC_CALLBACK_ERR_PUB_NO_DEV,  // ï¿½ï¿½ï¿½ï¿½ï¿½Þ¿ï¿½ï¿½ï¿½ ï¿½ï¿½Æµ ï¿½ï¿½Æµï¿½è±¸
+	UCLOUD_RTC_CALLBACK_ERR_STREAM_NOT_PUB, //ï¿½ï¿½Ã»ï¿½Ð·ï¿½ï¿½ï¿½ ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½
+	UCLOUD_RTC_CALLBACK_ERR_STREAM_SUBED,  //ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½è¶©ï¿½ï¿½
+	UCLOUD_RTC_CALLBACK_ERR_STREAM_NO_SUB, //ï¿½ï¿½Ã»ï¿½Ð¶ï¿½ï¿½ï¿½  ï¿½Þ·ï¿½
+	UCLOUD_RTC_CALLBACK_ERR_SUB_NO_USER,   //ï¿½Þ¶ï¿½Ó¦ï¿½ï¿½ï¿½Ã»ï¿½ ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½
+	UCLOUD_RTC_CALLBACK_ERR_SUB_NO_STREAM,  // ï¿½Þ¶ï¿½Ó¦ï¿½ï¿½Ã½ï¿½ï¿½ï¿½ï¿½
+	UCLOUD_RTC_CALLBACK_ERR_USER_LEAVING, // ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¿ªï¿½ï¿½ï¿½ï¿½  ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	UCLOUD_RTC_CALLBACK_ERR_NO_HAS_TRACK,  //ï¿½Þ¶ï¿½Ó¦ï¿½ï¿½Ã½ï¿½ï¿½ï¿½ï¿½
+	UCLOUD_RTC_CALLBACK_ERR_MSG_TIMEOUT, // ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Ê±
 }tUCloudRtcCallbackErrCode;
 
 typedef enum _tUCloudRtcReturnErrCode {
 	UCLOUD_RTC_RETURN_ERR_CODE_OK = 0,
-	UCLOUD_RTC_RETURN_ERR_AUTO_PUB = 1000, //×Ô¶¯·¢²¼
-	UCLOUD_RTC_RETURN_ERR_AUTO_SUB, //×Ô¶¯¶©ÔÄ
-	UCLOUD_RTC_RETURN_ERR_NOT_INIT, //ÒýÇæÃ»ÓÐ³õÊ¼»¯
-	UCLOUD_RTC_RETURN_ERR_IN_ROOM, //ÒÑ¾­¼ÓÈë·¿¼ä
-	UCLOUD_RTC_RETURN_ERR_NOT_IN_ROOM, // Î´¼ÓÈë·¿¼ä
-	UCLOUD_RTC_RETURN_ERR_NOT_PUB_TRACK, //Î´·¢²¼¶ÔÓ¦Ã½Ìå
-	UCLOUD_RTC_RETURN_ERR_INVAILED_PARGRAM,// ÎÞÐ§²ÎÊý
-	UCLOUD_RTC_RETURN_ERR_INVAILED_WND_HANDLE,// ÎÞÐ§´°¿Ú¾ä±ú
-	UCLOUD_RTC_RETURN_ERR_INVAILED_MEDIA_TYPE,// ÎÞÐ§Ã½ÌåÀàÐÍ
-	UCLOUD_RTC_RETURN_ERR_SUB_ONEMORE,// ×îÉÙ¶©ÔÄÒ»ÖÖÃ½Ìå
-	UCLOUD_RTC_RETURN_ERR_NO_PUB_ROLE, //ÎÞ·¢²¼È¨ÏÞ
-	UCLOUD_RTC_RETURN_ERR_NO_SUB_ROLE, //ÎÞ¶©ÔÄÈ¨ÏÞ
-	UCLOUD_RTC_RETURN_ERR_CAM_NOT_ENABLE, //Ã»ÓÐÅäÖÃ±¾µØcam ·¢ËÍ
-	UCLOUD_RTC_RETURN_ERR_SCREEN_NOT_ENABLE, //Ã»ÓÐÅäÖÃ±¾µØscreen ·¢ËÍ
-	UCLOUD_RTC_RETURN_ERR_AUDIO_MODE,        // ´¿ÒôÆµÄ£Ê½
-	UCLOUD_RTC_RETURN_ERR_SECKEY_INVALID ,    // seckey ÎÞÐ§
+	UCLOUD_RTC_RETURN_ERR_AUTO_PUB = 1000, //ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	UCLOUD_RTC_RETURN_ERR_AUTO_SUB, //ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½
+	UCLOUD_RTC_RETURN_ERR_NOT_INIT, //ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð³ï¿½Ê¼ï¿½ï¿½
+	UCLOUD_RTC_RETURN_ERR_IN_ROOM, //ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ë·¿ï¿½ï¿½
+	UCLOUD_RTC_RETURN_ERR_NOT_IN_ROOM, // Î´ï¿½ï¿½ï¿½ë·¿ï¿½ï¿½
+	UCLOUD_RTC_RETURN_ERR_NOT_PUB_TRACK, //Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦Ã½ï¿½ï¿½
+	UCLOUD_RTC_RETURN_ERR_INVAILED_PARGRAM,// ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½
+	UCLOUD_RTC_RETURN_ERR_INVAILED_WND_HANDLE,// ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Ú¾ï¿½ï¿½
+	UCLOUD_RTC_RETURN_ERR_INVAILED_MEDIA_TYPE,// ï¿½ï¿½Ð§Ã½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	UCLOUD_RTC_RETURN_ERR_SUB_ONEMORE,// ï¿½ï¿½ï¿½Ù¶ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ã½ï¿½ï¿½
+	UCLOUD_RTC_RETURN_ERR_NO_PUB_ROLE, //ï¿½Þ·ï¿½ï¿½ï¿½È¨ï¿½ï¿½
+	UCLOUD_RTC_RETURN_ERR_NO_SUB_ROLE, //ï¿½Þ¶ï¿½ï¿½ï¿½È¨ï¿½ï¿½
+	UCLOUD_RTC_RETURN_ERR_CAM_NOT_ENABLE, //Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½cam ï¿½ï¿½ï¿½ï¿½
+	UCLOUD_RTC_RETURN_ERR_SCREEN_NOT_ENABLE, //Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½screen ï¿½ï¿½ï¿½ï¿½
+	UCLOUD_RTC_RETURN_ERR_AUDIO_MODE,        // ï¿½ï¿½ï¿½ï¿½ÆµÄ£Ê½
+	UCLOUD_RTC_RETURN_ERR_SECKEY_INVALID ,    // seckey ï¿½ï¿½Ð§
 	UCLOUD_RTC_RETURN_ERR_INVAILD_FILEPATH,
 	UCLOUD_RTC_RETURN_ERR_NOT_SUPORT_AUDIO_FORMAT,
 }tUCloudRtcReturnErrCode;

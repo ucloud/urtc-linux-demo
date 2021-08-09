@@ -3,12 +3,14 @@
 #include <vector>
 #include <string>
 #include "RTCDefine.h"
-class UCloudRtcExtendVideoCaptureSource;
+#include "UCloudRtcComDefine.h"
+
+class UCloudRtcAudioFrameCallback ;
 class RTCEngineBase{
 public:
 	virtual ~RTCEngineBase(){}
 
-	virtual int InitRTCEngine(const char* logdir,const char* logname, int loglevel) = 0 ;
+	virtual int InitRTCEngine(const char* logdir,const char* logname, int loglevel, int classmode) = 0 ;
 	virtual int UnInitRTCEngine() = 0;
 
 	virtual std::string getSdkVersion() = 0;
@@ -20,10 +22,18 @@ public:
 	virtual int JoinRoom(tRTCAuthInfo& auth) = 0;
 	virtual int LeaveRoom(std::string& roomid) = 0;
 
+	virtual int sendMessage(std::string& msgid, std::string& msgdata) = 0 ;
+
 	virtual int MuteCamBeforeJoin(bool mute) = 0;
 	virtual int MuteMicBeforeJoin(bool mute) = 0;
 
-	virtual int enableExtendVideoSource(bool enable, UCloudRtcExtendVideoCaptureSource* source) = 0;
+	virtual int enableExtendVideoSource(bool enable) = 0;
+	virtual int enableExtendAudioSource(bool enable) = 0;
+	virtual int enableExtendVideocaptureAsScreen(bool enable) = 0;
+	virtual int enableExtendAudioSink(UCloudRtcAudioFrameCallback* sink) = 0;
+
+	virtual int PushVideoFrame(int mediatype, tUCloudRtcVideoFrame* frame) = 0 ;
+	virtual int PushAudioFrame(tUCloudRtcAudioFrame* frame) = 0 ;
 
 	virtual int PublishStream(tRTCStreamInfo& streaminfo) = 0;
 	virtual int UnPublishStream(tRTCStreamInfo& streaminfo) = 0;
