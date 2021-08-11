@@ -1,11 +1,11 @@
 # UCloudRTC Linux SDK API 手册
 
 * [一、UcloudRtcEngine引擎接口 类](#class)
-    * [1.1  获取引擎 - UCloudRtcEngine](#class-UCloudRtcEngine)
-	* [1.2  获取引擎 - UCloudRtcEngine](#class-UCloudRtcEngineExt)
-    * [1.3  绑定监听事件 - regRtcEventListener ](#class-regRtcEventListener)
-    * [1.4  设置SDK模式 - setSdkMode](#class-setSdkMode)
-    * [1.5  设置通话模式 - setChannelType](#class-setChannelType)	
+    * [1.1  获取引擎 - UCloudRtcEngine](#class-UCloudRtcEngine)    
+    * [1.2  获取引擎 - UCloudRtcEngine](#class-UCloudRtcEngineExt)    
+    * [1.3  绑定监听事件 - regRtcEventListener ](#class-regRtcEventListener)   
+    * [1.4  设置SDK模式 - setSdkMode](#class-setSdkMode)   
+    * [1.5  设置通话模式 - setChannelType](#class-setChannelType)	 
     * [1.6  设置流操作权限 - setStreamRole](#class-setStreamRole)
     * [1.7  设置纯音频模式 - setAudioOnlyMode](#class-setAudioOnlyMode)	
     * [1.8  设置自动发布和订阅 - setAutoPublishSubscribe](#class-setAutoPublishSubscribe)
